@@ -42,7 +42,7 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h4>Hope Springs</h4>
+      <h2 class="pagetitle">Hope Springs</h2>
        <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Hope Springs">
         <span class="input-group-btn">
@@ -74,7 +74,18 @@
     </div>
 
       <div class="col-sm-9">
-        
+        <h2>Make a post</h2>
+        <form action="" method="post" id="postform">
+        <label for="title">Title</label>
+        <br>
+        <input type="text" name="title" placeholder="Post title" id="title">
+        <br>
+        <label for="post">Your post</label>
+        <br>
+        <textarea name="post" id="post" cols="80" rows="26" class="inputField" placeholder="Write your post here"></textarea>
+        <br>
+        <input type="submit" value="submit" id="postsubmit" class="btn btn-success">
+        </form>
       </div>
     </div>
   </div>

@@ -32,3 +32,20 @@
 	margin-right: 5px;
 	margin-top: 10px;
 }
+
+.pagetitle {
+	color: #002db3;
+	font-weight: bold;
+}
+
+#postform {
+	margin-left: 20px;
+}
+
+#postform label {
+	margin-top: 15px;
+}
+
+#postsubmit {
+	margin-top: 10px;
+}
