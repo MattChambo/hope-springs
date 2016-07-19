@@ -8,33 +8,6 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 100%;}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
   <link rel="stylesheet" href="../../css/styles.css"> 
 </head>
 <body>
@@ -74,18 +47,18 @@
     </div>
 
       <div class="col-sm-9">
-        <h2>Make a post</h2>
-        <form action="" method="post" id="postform">
-        <label for="title">Title</label>
-        <br>
-        <input type="text" name="title" placeholder="Post title" id="title">
-        <br>
-        <label for="post">Your post</label>
-        <br>
-        <textarea name="post" id="post" cols="80" rows="26" class="inputField" placeholder="Write your post here"></textarea>
-        <br>
-        <input type="submit" value="submit" id="postsubmit" class="btn btn-success">
-        </form>
+        <h2>View post</h2>
+        <h3>Post title</h3>
+        <div id="viewpost">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        <div>
       </div>
     </div>
   </div>
