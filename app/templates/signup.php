@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Create an account for the Hope Springs forum!</title>
-  <meta name="description" content="Account creation page for Hope Springs forum">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="../../css/styles.css"> 
-</head>
+<?php $this->layout('master', [
+    'title'=>'Create an account for the Hope Springs forum!',
+    'desc'=>'Account creation page for Hope Springs forum'
+  ]); ?> 
+
 <body id="signupbackground">
 		<div id="signup">
 			<h1>Create an account</h1>
@@ -33,5 +26,3 @@
 				<input type="submit" value="Sign up now!" id="signupsubmit" class="btn btn-success">
 			</form>
 		</div>
-</body>
-</html>
