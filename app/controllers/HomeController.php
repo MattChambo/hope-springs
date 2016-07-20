@@ -6,6 +6,7 @@ class HomeController extends PageController {
 
 	public function __construct($dbc) {
 
+		parent::__construct();
 		// Save database connection
 		$this->dbc = $dbc;
 
@@ -18,7 +19,12 @@ class HomeController extends PageController {
 
 		// Prepare a container for data
 		$data = [];
-		
+
+		if($this->commentMessage != '') {
+			$data['commentMessage'] = $this->commentMessage;
+		}
+
+		echo $plates->render('home', $data);
 	}
 
 
