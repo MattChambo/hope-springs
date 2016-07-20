@@ -115,6 +115,32 @@
 	color: #80ccff;
 }
 
+#notfoundbackground {
+	background-color: #004d00;
+}
+
+#notfound {
+	margin: 0 auto;
+	width: 45%;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	margin-top: 100px;
+}
+
+#notfound h1 {
+	text-align: center;
+}
+
+#notfound a {
+	margin-left: 20px;
+	font-size: 150%;
+}
+
+#notfound img {
+	margin-left: 20px;
+}
+
   /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
     .row.content {height: 100%;}
     
