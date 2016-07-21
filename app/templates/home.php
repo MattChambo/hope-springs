@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h2 class="pagetitle">Hope Springs</h2>
+     <a href="index.php?page=home"><h2 class="pagetitle">Hope Springs</h2></a>
        <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Hope Springs">
         <span class="input-group-btn">
@@ -79,7 +79,7 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="index.php?page=editcomment" class="editdelete">Edit</a>
           <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
@@ -91,7 +91,7 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="index.php?page=editcomment" class="editdelete">Edit</a>
           <a href="#" class="editdelete">Delete</a>
           <br>
           </div>
@@ -128,7 +128,7 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-           <a href="index.php?page=editpost" class="editdelete">Edit</a>
+           <a href="index.php?page=editcomment" class="editdelete">Edit</a>
            <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
@@ -140,7 +140,7 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-           <a href="index.php?page=editpost" class="editdelete">Edit</a>
+           <a href="index.php?page=editcomment" class="editdelete">Edit</a>
            <a href="#" class="editdelete">Delete</a>
           <hr>
           <br>

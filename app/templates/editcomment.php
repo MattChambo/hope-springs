@@ -1,6 +1,6 @@
 <?php $this->layout('master', [
-    'title'=>'Make a post on the Hope Springs forum',
-    'desc'=>'The page for making a post on the Hope Springs forum'
+    'title'=>'Edit your comment on the Hope Springs forum',
+    'desc'=>'Edit your comment on this page'
   ]); ?>
 
   <body>
@@ -35,24 +35,20 @@
         <li><a href="#section10">Post 10</a></li>
         <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
         <br>
+        <a href="index.php?page=makepost" class="makepost">Make a post</a>
       </ul><br>
     </div>
 
       <div class="col-sm-9">
-        <h2>Make a post</h2>
-        <form action="" method="post" id="postform">
-        <label for="title">Title</label>
+        <h2>Edit your comment</h2>
+        <form action="#" method="post" id="postform">
+        <label for="comment">Your comment</label>
         <br>
-        <input type="text" name="title" placeholder="Post title" id="title">
-        <span id="titlemessage"></span>
+        <textarea name="comment" id="comment" cols="80" rows="20" class="inputField"></textarea>
         <br>
-        <label for="post">Your post</label>
+        <span id="commentmessage"></span>
         <br>
-        <textarea name="post" id="post" cols="70" rows="20" class="inputField" placeholder="Write your post here"></textarea>
-        <br>
-        <span id="postmessage"></span>
-        <br>
-        <input type="submit" value="Make your post" id="postsubmit" class="btn btn-success">
+        <input type="submit" value="Edit your comment" id="commentsubmit" class="btn btn-success">
         </form>
       </div>
     </div>
@@ -62,4 +58,3 @@
 <footer class="container-fluid">
   <p>&copy; Matthew William Chamberlain <a href="http://mattchambo.github.io/oh-green-september/" class="footerlink">Visit Matts poetry and music website!</a></p>
 </footer>
-

@@ -11,6 +11,10 @@ class LoginController extends PageController {
 	// Save database connection
 	$this->dbc = $dbc;
 
+	if( isset( $_POST['login'] ) ) {
+			$this->processLoginForm();
+		}
+
 	}
 
 	public function buildHTML() {
@@ -30,6 +34,10 @@ class LoginController extends PageController {
 
 	echo $plates->render('login', $data);
 
+	}
+
+	private function processLoginForm() {
+		$totalErrors = 0;
 	}
 
 }

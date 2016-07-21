@@ -46,9 +46,18 @@
 			$controller = new MakePostController($dbc);
 		break;
 
+		// Edit post page
+
 		case 'editpost':
 			require 'app/controllers/EditPostController.php';
 			$controller = new EditPostController($dbc);
+		break;
+
+		// Edit comment page
+
+		case 'editcomment':
+			require 'app/controllers/EditCommentController.php';
+			$controller = new EditCommentController($dbc);
 		break;
 
 		default:

@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h2 class="pagetitle">Hope Springs</h2>
+      <a href="index.php?page=home"><h2 class="pagetitle">Hope Springs</h2></a>
        <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Hope Springs">
         <span class="input-group-btn">

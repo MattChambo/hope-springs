@@ -8,7 +8,7 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
-      <h2 class="pagetitle">Hope Springs</h2>
+      <a href="index.php?page=home"><h2 class="pagetitle">Hope Springs</h2></a>
        <div class="input-group">
         <input type="text" class="form-control" placeholder="Search Hope Springs">
         <span class="input-group-btn">
@@ -19,8 +19,8 @@
       </div>
       <br>
       <ul class="account">
-        <li><a href="#">Create Account</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="index.php?page=signup">Create Account</a></li>
+        <li><a href="index.php?page=login">Login</a></li>
       </ul>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Post 1 (Sticky)</a></li>
@@ -35,7 +35,7 @@
         <li><a href="#section10">Post 10</a></li>
         <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
         <br>
-        <a href="#" class="makepost">Make a post</a>
+        <a href="index.php?page=makepost" class="makepost">Make a post</a>
       </ul><br>
     </div>
 
