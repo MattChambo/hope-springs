@@ -53,8 +53,8 @@
       <h2>Post 2</h2>
       <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, May 24, 2016.</h5>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <button type="button" class="editdelete">Edit</button>
-      <button type="button" class="editdelete">Delete</button>
+      <a href="index.php?page=editpost" class="editdelete">Edit</a>
+      <a href="#" class="editdelete">Delete</a>
 
       <hr>
 
@@ -79,8 +79,8 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <button type="button" class="editdelete">Edit</button>
-          <button type="button" class="editdelete">Delete</button>
+          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
         <div class="col-sm-10">
@@ -91,8 +91,8 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <button type="button" class="editdelete">Edit</button>
-          <button type="button" class="editdelete">Delete</button>
+          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="#" class="editdelete">Delete</a>
           <br>
           </div>
         </div>
@@ -103,8 +103,8 @@
       <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, May 24, 2016.</h5>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-      <button type="button" class="editdelete">Edit</button>
-      <button type="button" class="editdelete">Delete</button>
+      <a href="index.php?page=editpost" class="editdelete">Edit</a>
+      <a href="#" class="editdelete">Delete</a>
       <hr>
 
       <h4>Leave a Comment:</h4>
@@ -128,8 +128,8 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <button type="button" class="editdelete">Edit</button>
-          <button type="button" class="editdelete">Delete</button>
+           <a href="index.php?page=editpost" class="editdelete">Edit</a>
+           <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
         <div class="col-sm-10">
@@ -140,8 +140,8 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <button type="button" class="editdelete">Edit</button>
-          <button type="button" class="editdelete">Delete</button>
+           <a href="index.php?page=editpost" class="editdelete">Edit</a>
+           <a href="#" class="editdelete">Delete</a>
           <hr>
           <br>
           </div>

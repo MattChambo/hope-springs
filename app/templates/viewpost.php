@@ -33,7 +33,8 @@
         <li><a href="#section8">Post 8</a></li>
         <li><a href="#section9">Post 9</a></li>
         <li><a href="#section10">Post 10</a></li>
-        <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
+        <li><button type="button" class="prevnext">Prev</button>
+        <button type="button" class="prevnext">Next</button></li>
         <br>
         <a href="index.php?page=makepost" class="makepost">Make a post</a>
       </ul><br>
@@ -53,8 +54,8 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         <div>
-        <button type="button" class="editdelete">Edit</button>
-        <button type="button" class="editdelete">Delete</button>
+        <a href="index.php?page=editpost" class="editdelete">Edit</a>
+        <a href="#" class="editdelete">Delete</a>
 
       <hr>
       </div>
@@ -79,8 +80,8 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <button type="button" class="editdelete">Edit</button>
-          <button type="button" class="editdelete">Delete</button>
+          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
       </div>
