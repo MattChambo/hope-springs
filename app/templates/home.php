@@ -23,7 +23,7 @@
         <li><a href="index.php?page=login">Login</a></li>
       </ul>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Post 1 (Sticky)</a></li>
+        <li class="active"><a href="index.php?page=viewpost">Post 1 (Sticky)</a></li>
         <li><a href="#section2">Post 2</a></li>
         <li><a href="#section3">Post 3</a></li>
         <li><a href="#section4">Post 4</a></li>
@@ -35,7 +35,7 @@
         <li><a href="#section10">Post 10</a></li>
         <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
         <br>
-        <a href="#" class="makepost">Make a post</a>
+        <a href="index.php?page=makepost" class="makepost">Make a post</a>
       </ul><br>
     </div>
 
