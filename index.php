@@ -7,7 +7,7 @@
 
 	$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-	$dbc = new mysqli('localhost', 'root', '', 'hopesprings');
+	$dbc = new mysqli('localhost', 'root', '', 'hope_springs');
 
 	switch($page) {
 
