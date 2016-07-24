@@ -3,7 +3,6 @@
     'desc'=>'Account creation page for Hope Springs forum'
   ]); ?> 
 
-<?php var_dump($data); ?>
 <body id="signupbackground">
 		<div id="signup">
 			<h1>Create an account</h1>
@@ -11,7 +10,7 @@
 				<label for="username">User name:</label>
 				<input type="text" name="username" placeholder="Enter your user name" value="<?= isset($_POST['signupsubmit']) ? $_POST['username']: '' ?>" id="username">
 				<br>
-				<?= isset($_POST['username']) ? $usernamemessage : '' ?>
+				<span id="usernamemessage"><?= isset($usernamemessage) ? $usernamemessage : '' ?></span>
 				<br>
 				<label for="email">Email address:</label>
 				<input type="text" name="email" placeholder="Enter your email address" value="<?= isset($_POST['signupsubmit']) ? $_POST['email']: '' ?>" id="email">

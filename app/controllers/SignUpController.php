@@ -2,10 +2,10 @@
 
 class SignUpController extends PageController {
 
-	private $usernamemessage;
-	private $emailMessage;
-	private $passwordMessage;
-	private $reenterPasswordMessage;
+	protected $usernamemessage;
+	protected $emailmessage;
+	protected $passwordmessage;
+	protected $reenterpasswordmessage;
 
 	public function __construct($dbc) {
 
@@ -31,16 +31,16 @@ class SignUpController extends PageController {
 			$data['usernamemessage'] = $this->usernamemessage;
 		}
 
-		if($this->emailMessage != '') {
-			$data['emailMessage'] = $this->emailMessage;
+		if($this->emailmessage != '') {
+			$data['emailmessage'] = $this->emailmessage;
 		}
 
-		if($this->passwordMessage != '') {
-			$data['passwordMessage'] = $this->passwordMessage;
+		if($this->passwordmessage != '') {
+			$data['passwordmessage'] = $this->passwordmessage;
 		}
 
-		if($this->reenterPasswordMessage != '') {
-			$data['reenterPasswordMessage'] = $this->reenterPasswordMessage;
+		if($this->reenterpasswordmessage != '') {
+			$data['reenterpasswordmessage'] = $this->reenterpasswordmessage;
 		}
 		echo $plates->render('signup', $data);
 	}
@@ -50,12 +50,12 @@ class SignUpController extends PageController {
 
 		// Validate user name
 
-		// if( strlen($_POST['username']) > 30 ){
+		 if( strlen($_POST['username']) > 30 ){
 
 		// 	$this->data['usernamemessage'] = '<p>Your user name can only be 30 characters long</p>';
-		// 	$totalErrors++;
+		 	$totalErrors++;
 
-		// }
+		 }
 
 		if( strlen($_POST['username']) === 0 ){
 
