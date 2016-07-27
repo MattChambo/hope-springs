@@ -2,10 +2,6 @@
 
 class SignUpController extends PageController {
 
-	protected $usernamemessage;
-	protected $emailmessage;
-	protected $passwordmessage;
-	protected $reenterpasswordmessage;
 
 	public function __construct($dbc) {
 
@@ -27,21 +23,6 @@ class SignUpController extends PageController {
 		// Prepare a container for data
 		$data = [];
 
-		if($this->usernamemessage != '') {
-			$data['usernamemessage'] = $this->usernamemessage;
-		}
-
-		if($this->emailmessage != '') {
-			$data['emailmessage'] = $this->emailmessage;
-		}
-
-		if($this->passwordmessage != '') {
-			$data['passwordmessage'] = $this->passwordmessage;
-		}
-
-		if($this->reenterpasswordmessage != '') {
-			$data['reenterpasswordmessage'] = $this->reenterpasswordmessage;
-		}
 		echo $plates->render('signup', $data);
 	}
 
@@ -52,22 +33,24 @@ class SignUpController extends PageController {
 
 		 if( strlen($_POST['username']) > 30 ){
 
-		// 	$this->data['usernamemessage'] = '<p>Your user name can only be 30 characters long</p>';
+		 	$this->data['userNameMessage'] = '<p>Your user name can only be 30 characters long</p>';
 		 	$totalErrors++;
 
 		 }
 
 		if( strlen($_POST['username']) === 0 ){
 
-			$this->data['usernamemessage'] = '<p>Username is required</p>';
 			$totalErrors++;
+			$this->data['userNameMessage'] = '<p>User name is required</p>';
+			
 
 		}
 
 		if( strlen($_POST['email']) > 100 ){
 
-			$this->data['emailmessage'] = '<p>Your email address cannot be more than 89 characters long</p>';
 			$totalErrors++;
+			$this->data['emailMessage'] = '<p>Your email address cannot be more than 89 characters long</p>';
+			
 
 		}
 
@@ -83,24 +66,27 @@ class SignUpController extends PageController {
 
 		// If the query failed OR there is a result
 		if( !$result || $result->num_rows > 0 ) {
-			$this->emailMessage = 'E-mail in use';
+
 			$totalErrors++;
+			$this->emailMessage = '<p>E-mail in use</p>';
+			
 		}
 
 		// If the password is less than 8 characters long
 		if( strlen($_POST['password']) < 8 ) {
 			// Password is too short
-			$this->passwordMessage = 'Password must be at least 8 characters';
 			$totalErrors++;
+			$this->passwordMessage = '<p>Password must be at least 8 characters</p>';
+			
 
 		}
-		var_dump($totalErrors);
+
 		// If total errors is still 0
 
 		if( $totalErrors == 0) {
 			
 			// Get user name
-			$username = ( $_POST['username']);
+			$username = ( $_POST['username'] );
 
 			// Hash the password
 			$hash = password_hash( $_POST['password'], PASSWORD_BCRYPT );

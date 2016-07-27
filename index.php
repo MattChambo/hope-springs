@@ -62,7 +62,7 @@
 
 		default:
 			require 'app/controllers/NotFoundController.php';
-			$controller = new NotFoundController;
+			$controller = new NotFoundController();
 		break;
 
 	}
