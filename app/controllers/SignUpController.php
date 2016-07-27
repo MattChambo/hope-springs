@@ -6,6 +6,10 @@ class SignUpController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
+
+		// Check to make sure the user is logged out and redirect them to the home page if they are logged in
+		$this->mustBeLoggedOut();
+
 		// Save database connection
 		$this->dbc = $dbc;
 
@@ -33,7 +37,7 @@ class SignUpController extends PageController {
 
 		 if( strlen($_POST['username']) > 30 ){
 
-		 	$this->data['userNameMessage'] = '<p>Your user name can only be 30 characters long</p>';
+		 	$this->data['userNameMessage'] = 'Your user name can only be 30 characters long';
 		 	$totalErrors++;
 
 		 }
@@ -41,15 +45,15 @@ class SignUpController extends PageController {
 		if( strlen($_POST['username']) === 0 ){
 
 			$totalErrors++;
-			$this->data['userNameMessage'] = '<p>User name is required</p>';
+			$this->data['userNameMessage'] = 'User name is required';
 			
 
 		}
 
-		if( strlen($_POST['email']) > 100 ){
+		if( strlen($_POST['email']) > 89 ){
 
 			$totalErrors++;
-			$this->data['emailMessage'] = '<p>Your email address cannot be more than 89 characters long</p>';
+			$this->data['emailMessage'] = 'Your email address cannot be more than 89 characters long';
 			
 
 		}
@@ -68,7 +72,7 @@ class SignUpController extends PageController {
 		if( !$result || $result->num_rows > 0 ) {
 
 			$totalErrors++;
-			$this->emailMessage = '<p>E-mail in use</p>';
+			$this->emailMessage = 'E-mail in use';
 			
 		}
 
@@ -76,7 +80,7 @@ class SignUpController extends PageController {
 		if( strlen($_POST['password']) < 8 ) {
 			// Password is too short
 			$totalErrors++;
-			$this->passwordMessage = '<p>Password must be at least 8 characters</p>';
+			$this->passwordMessage = 'Password must be at least 8 characters';
 			
 
 		}

@@ -44,15 +44,15 @@
         <label for="title">Title</label>
         <br>
         <input type="text" name="title" placeholder="Post title" id="title">
-        <span id="titlemessage"></span>
+        <span id="titleMessage"></span>
         <br>
         <label for="post">Your post</label>
         <br>
         <textarea name="post" id="post" cols="70" rows="20" class="inputField" placeholder="Write your post here"></textarea>
         <br>
-        <span id="postmessage"></span>
+        <span id="postMessage"></span>
         <br>
-        <input type="submit" value="Make your post" id="postsubmit" class="btn btn-success">
+        <input type="submit" name="postsubmit" value="Make your post" id="postsubmit" class="btn btn-success">
         </form>
       </div>
     </div>

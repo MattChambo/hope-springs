@@ -8,13 +8,25 @@
 			<h1>Login</h1>
 			<form action="" method="post" id="loginform">
 				<label for="loginusername">User name:</label>
-				<input type="text" name="loginusername" placeholder="Your user name" id="loginusername">
+				<input type="text" name="username" placeholder="Your user name" id="loginUsername" value="<?= isset($_POST['login']) ? $_POST['username'] : '' ?>">
 				<br>
-				<span id="usernamemessage"></span><br>
+				<span id="usernameMessage">
+					<?php if( isset($usernameMessage) ): ?>
+          			<?= $emailMessage ?>
+          			<?php endif ?>
+          		</span><br>
 				<label for="loginpassword">Password:</label>
-				<input type="password" name="loginpassword" placeholder="Enter your password" id="loginpassword">
+				<input type="password" name="password" placeholder="Enter your password" id="loginPassword">
 				<br>
-				<span id="passwordmessage"></span><br><br>
-				<input type="submit" value="Login now!" id="loginsubmit" class="btn btn-success">
+				<span id="passwordMessage">
+					<?php if( isset($passwordMessage) ): ?>
+          			<?= $passwordMessage ?>
+          			<?php endif ?>
+
+          			<?php if( isset($loginMessage) ): ?>
+          			<?= $loginMessage ?>
+          			<?php endif ?>
+				</span><br><br>
+				<input type="submit" name="login" value="Login now!" id="loginsubmit" class="btn btn-success">
 			</form>
 		</div>
