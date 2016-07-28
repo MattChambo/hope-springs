@@ -21,21 +21,21 @@ class MakePostController extends PageController {
 	}
 
 	public function buildHTML() {
-		// Insantiate (create instance of) Plates library
-		$plates = new League\Plates\Engine('app/templates');
+		// // Insantiate (create instance of) Plates library
+		// $plates = new League\Plates\Engine('app/templates');
 
-		// Prepare a container for data
-		$data = [];
+		// // Prepare a container for data
+		// $data = [];
 
-		if($this->titleMessage != '') {
-			$data['titleMessage'] = $this->titleMessage;
-		}
+		// if($this->titleMessage != '') {
+		// 	$data['titleMessage'] = $this->titleMessage;
+		// }
 
-		if($this->postMessage != '') {
-			$data['postMessage'] = $this->postMessage;
-		}
+		// if($this->postMessage != '') {
+		// 	$data['postMessage'] = $this->postMessage;
+		// }
 
-		echo $plates->render('makepost', $data);
+		echo $this->plates->render('makepost', $this->data);
 	}
 
 	private function processNewPost() {
@@ -64,6 +64,7 @@ class MakePostController extends PageController {
 		}
 
 		if($totalErrors == 0) {
+
 
 			// Filter the data
 			$title = $this->dbc->real_escape_string($title);

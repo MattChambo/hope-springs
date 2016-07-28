@@ -44,7 +44,7 @@
         <label for="title">Title</label>
         <br>
         <input type="text" name="title" placeholder="Post title" id="title">
-        <span id="titleMessage"></span>
+        <span id="titleMessage"><?= isset($titleMessage) ? $titleMessage : '' ?></span>
         <br>
         <label for="post">Your post</label>
         <br>
