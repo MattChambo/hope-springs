@@ -28,7 +28,7 @@
         <?php endif; ?>
       </ul>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="index.php?page=viewpost">Post 1 (Sticky)</a></li>
+        <li class="active"><a href="index.php?page=viewpost">Wellcome to Hope Springs!</a></li>
         <li><a href="#section2">Post 2</a></li>
         <li><a href="#section3">Post 3</a></li>
         <li><a href="#section4">Post 4</a></li>
@@ -55,11 +55,29 @@
       <br>
 
       <hr>
-      <h2>Post 2</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, May 24, 2016.</h5>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <a href="index.php?page=editpost" class="editdelete">Edit</a>
-      <a href="#" class="editdelete">Delete</a>
+      <?php foreach($allPosts as $item): ?>
+      <h2><a href="index.php?page=viewpost&postid=<?= $item['id'] ?>"><?= htmlentities($item['title']) ?></a></h2>
+      <h5><span class="glyphicon glyphicon-time"></span> Post by <?= $this->e($item['username']) ?>, <?= $item['created_at'] ?></h5>
+      <p><?= htmlentities($item['content']) ?></p>
+        <?php
+
+    if( isset($_SESSION['id']) ) {
+
+      if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+        // You own post!
+        ?>
+          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="#" class="editdelete">Delete</a>
+
+        <?php
+      }
+
+    }
+
+  ?>
+
+      
+      
 
       <hr>
 
@@ -90,7 +108,7 @@
         </div>
         </div>
       <hr>
-
+       <?php endforeach ?>
         </div>
       </div>
     </div>

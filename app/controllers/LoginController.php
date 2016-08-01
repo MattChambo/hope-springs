@@ -21,19 +21,19 @@ class LoginController extends PageController {
 	}
 
 	public function buildHTML() {
-	// // Insantiate (create instance of) Plates library
-	// $plates = new League\Plates\Engine('app/templates');
+	//  // Insantiate (create instance of) Plates library
+	//  $plates = new League\Plates\Engine('app/templates');
 
-	// // Prepare a container for data
-	// $data = [];
+	//  // Prepare a container for data
+	//  $data = [];
 
-	// if($this->usernameMessage != '') {
-	// 	$data['usernameMessage'] = $this->usernameMessage;
-	// }
+	//  if($this->userNameMessage != '') {
+	//  	$data['userNameMessage'] = $this->usernameMessage;
+	//  }
 
 	// if($this->passwordMessage != '') {
-	// 	$data['passwordMessage'] = $this->passwordMessage;
-	// }
+	//  	$data['passwordMessage'] = $this->passwordMessage;
+	//  }
 
 	echo $this->$plates->render('login', $this->$data);
 

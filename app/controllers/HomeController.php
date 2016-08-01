@@ -36,7 +36,10 @@ class HomeController extends PageController {
 
 		// Prepare some SQL
 		$sql = "SELECT * 
-				FROM posts";
+				FROM posts
+				JOIN user
+				ON user_id = user.id
+				";
 
 		// Run the SQL and capture the result
 		$result = $this->dbc->query($sql);

@@ -54,8 +54,22 @@
             proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         <div>
-        <a href="index.php?page=editpost" class="editdelete">Edit</a>
-        <a href="#" class="editdelete">Delete</a>
+          <?php
+
+            if( isset($_SESSION['id']) ) {
+
+              if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+              // You own post!
+          ?>
+          <a href="index.php?page=editpost" class="editdelete">Edit</a>
+          <a href="#" class="editdelete">Delete</a>
+
+        <?php
+      }
+
+    }
+
+  ?>
 
       <hr>
       </div>
@@ -80,8 +94,22 @@
           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
           proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <?php
+
+            if( isset($_SESSION['id']) ) {
+
+              if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+              // You own post!
+              ?>
           <a href="index.php?page=editpost" class="editdelete">Edit</a>
           <a href="#" class="editdelete">Delete</a>
+
+        <?php
+      }
+
+    }
+
+  ?>
           <br>
         </div>
       </div>
