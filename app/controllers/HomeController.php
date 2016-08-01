@@ -17,14 +17,38 @@ class HomeController extends PageController {
 		// Insantiate (create instance of) Plates library
 		$plates = new League\Plates\Engine('app/templates');
 
-		// Prepare a container for data
+		$allData = $this->getLatestPosts();
+
 		$data = [];
+
+		$data['allPosts'] = $allData;
 
 		if($this->commentMessage != '') {
 			$data['commentMessage'] = $this->commentMessage;
 		}
 
 		echo $plates->render('home', $data);
+	}
+
+
+
+	private function getLatestPosts() {
+
+		// Prepare some SQL
+		$sql = "SELECT * 
+				FROM posts";
+
+		// Run the SQL and capture the result
+		$result = $this->dbc->query($sql);
+
+		// Extract the results as an array
+		$allData = $result->fetch_all(MYSQLI_ASSOC);
+
+		
+		// Return the results to the code that called this function
+		return $allData;
+
+
 	}
 
 

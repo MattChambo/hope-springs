@@ -60,6 +60,12 @@
 			$controller = new EditCommentController($dbc);
 		break;
 
+		case 'logout':
+			unset($_SESSION['id']);
+			unset($_SESSION['privilege']);
+			header('Location: index.php');
+		break;
+
 		default:
 			require 'app/controllers/NotFoundController.php';
 			$controller = new NotFoundController();

@@ -19,8 +19,13 @@
       </div>
       <br>
       <ul class="account">
-        <li><a href="index.php?page=signup">Create Account</a></li>
-        <li><a href="index.php?page=login">Login</a></li>
+        <?php if(!isset($_SESSION['id'])): ?>
+          <li><a href="index.php?page=signup">Create Account</a></li>
+          <li><a href="index.php?page=login">Login</a></li>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['id'])): ?>
+          <li><a href="index.php?page=logout">Logout</a></li>
+        <?php endif; ?>
       </ul>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="index.php?page=viewpost">Post 1 (Sticky)</a></li>
@@ -35,12 +40,13 @@
         <li><a href="#section10">Post 10</a></li>
         <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
         <br>
-        <a href="index.php?page=makepost" class="makepost">Make a post</a>
+        <?php if(isset($_SESSION['id'])): ?>
+          <li><a href="index.php?page=makepost" class="makepost">Make a post</a></li>
+        <?php endif; ?>
       </ul><br>
     </div>
 
     <div class="col-sm-9">
-      <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>Wellcome to Hope Springs!</h2>
       <h5><span class="glyphicon glyphicon-time"></span> Post by Matthew Chamberlain, July 20, 2016.</h5>
@@ -48,7 +54,6 @@
       <br>
       <br>
 
-      <h4><small>RECENT POSTS</small></h4>
       <hr>
       <h2>Post 2</h2>
       <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, May 24, 2016.</h5>
@@ -68,7 +73,7 @@
       </form>
       <br><br>
       
-      <p><span class="badge">2</span> Comments:</p><br>
+      <p><span class="badge">1</span> Comments:</p><br>
       
       <div class="row">
         <div class="col-sm-10">
@@ -83,70 +88,10 @@
           <a href="#" class="editdelete">Delete</a>
           <br>
         </div>
-        <div class="col-sm-10">
-          <h4>John Doe <small>Feb 25, 2016, 8:25 PM</small></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a href="index.php?page=editcomment" class="editdelete">Edit</a>
-          <a href="#" class="editdelete">Delete</a>
-          <br>
-          </div>
         </div>
-
-              <h4><small>RECENT POSTS</small></h4>
-      <hr>
-      <h2>Post 3</h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by John Doe, May 24, 2016.</h5>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-      <a href="index.php?page=editpost" class="editdelete">Edit</a>
-      <a href="#" class="editdelete">Delete</a>
       <hr>
 
-      <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
         </div>
-         <span id="commentmessage"></span><br>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-      <br><br>
-      
-      <p><span class="badge">2</span> Comments:</p><br>
-      
-      <div class="row">
-        <div class="col-sm-10">
-          <h4>Matt <small>Jan 27, 2016, 9:12 PM</small></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-           <a href="index.php?page=editcomment" class="editdelete">Edit</a>
-           <a href="#" class="editdelete">Delete</a>
-          <br>
-        </div>
-        <div class="col-sm-10">
-          <h4>John Doe <small>Feb 25, 2016, 8:25 PM</small></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-           <a href="index.php?page=editcomment" class="editdelete">Edit</a>
-           <a href="#" class="editdelete">Delete</a>
-          <hr>
-          <br>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>

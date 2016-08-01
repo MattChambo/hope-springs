@@ -9,10 +9,10 @@ class LoginController extends PageController {
 
 	parent::__construct();
 
-	$this->mustBeLoggedOut();
-
 	// Save database connection
 	$this->dbc = $dbc;
+
+	$this->mustBeLoggedOut();
 
 	if( isset( $_POST['login'] ) ) {
 			$this->processLoginForm();
@@ -21,21 +21,21 @@ class LoginController extends PageController {
 	}
 
 	public function buildHTML() {
-	// Insantiate (create instance of) Plates library
-	$plates = new League\Plates\Engine('app/templates');
+	// // Insantiate (create instance of) Plates library
+	// $plates = new League\Plates\Engine('app/templates');
 
-	// Prepare a container for data
-	$data = [];
+	// // Prepare a container for data
+	// $data = [];
 
-	if($this->usernameMessage != '') {
-		$data['usernameMessage'] = $this->usernameMessage;
-	}
+	// if($this->usernameMessage != '') {
+	// 	$data['usernameMessage'] = $this->usernameMessage;
+	// }
 
-	if($this->passwordMessage != '') {
-		$data['passwordMessage'] = $this->passwordMessage;
-	}
+	// if($this->passwordMessage != '') {
+	// 	$data['passwordMessage'] = $this->passwordMessage;
+	// }
 
-	echo $plates->render('login', $data);
+	echo $this->$plates->render('login', $this->$data);
 
 	}
 
@@ -43,12 +43,12 @@ class LoginController extends PageController {
 		$totalErrors = 0;
 
 		if(strlen($_POST['username']) < 3) {
-			$this->data['usernameMessage'] = 'Your user name must be more than three charcters';
+			$this->data['useNameMessage'] = 'Your user name must be more than three charcters';
 			$totalErrors++;
 		}
 
 		if(strlen($_POST['username']) > 30) {
-			$this->data['usernameMessage'] = 'Your user name cannot be more than thirty characters';
+			$this->data['userNameMessage'] = 'Your user name cannot be more than thirty characters';
 			$totalErrors++;
 		}
 
