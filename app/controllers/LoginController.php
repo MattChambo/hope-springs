@@ -43,7 +43,7 @@ class LoginController extends PageController {
 		$totalErrors = 0;
 
 		if(strlen($_POST['username']) < 3) {
-			$this->data['useNameMessage'] = 'Your user name must be more than three charcters';
+			$this->data['userNameMessage'] = 'Your user name must be more than three charcters';
 			$totalErrors++;
 		}
 
@@ -90,6 +90,7 @@ class LoginController extends PageController {
 				if( $passwordResult == true ) {
 					// Log the user in
 					$_SESSION['id'] = $userData['id'];
+					$_SESSION['privilege'] = $userData['privilege'];
 
 					header('Location: index.php?page=home');
 

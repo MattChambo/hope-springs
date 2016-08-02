@@ -1,7 +1,9 @@
 <?php $this->layout('master', [
     'title'=>'View a post on the Hope Springs forum',
     'desc'=>'This is a post from Hope Springs a website for male survivors of physical, sexual or emotional abuse, as well as their families and friends'
-  ]); ?> 
+  ]);  ?> 
+
+
 
   <body>
 
@@ -43,22 +45,17 @@
       <div class="col-sm-9">
         <div id="viewpost">
           
-          <h2>Post title</h2>
+          <h2><?= $this->e($post['title']) ?></h2>
         
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <?= $this->e($post['content']) ?>
           </p>
         <div>
           <?php
 
             if( isset($_SESSION['id']) ) {
 
-              if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+              if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
           ?>
           <a href="index.php?page=editpost" class="editdelete">Edit</a>
@@ -73,32 +70,28 @@
 
       <hr>
       </div>
-         <h4>Leave a Comment:</h4>
-      <form role="form">
-        <div class="form-group">
-          <textarea class="form-control" rows="3" required></textarea>
-        </div>
-         <span id="commentmessage"></span><br>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+      <h4>Leave a Comment:</h4>
+        <form role="form" action="index.php?page=viewpost&postid=<?= $_GET['postid'] ?>" method="post">
+          <div class="form-group">
+            <textarea name="comment" class="form-control" rows="3" required></textarea>
+          </div>
+           <span id="commentmessage"></span><br>
+          <button type="submit" class="btn btn-success" name="new-comment">Submit</button>
+        </form>
       <br><br>
       
-      <p><span class="badge">1</span> Comments:</p><br>
-      
+
+      <p><span class="badge"><?= count($allComments) ?></span> Comments:</p><br>
+      <?php foreach($allComments as $comment): ?>
       <div class="row">
         <div class="col-sm-10">
-          <h4>Matt <small>Jan 27, 2016, 9:12 PM</small></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h4><?= htmlentities($comment['username']) ?><small> Comment was last edited on <?= htmlentities($comment['updated_at']) ?></small></h4>
+          <p><?= htmlentities($comment['comment']) ?></p>
           <?php
 
             if( isset($_SESSION['id']) ) {
 
-              if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+              if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
               ?>
           <a href="index.php?page=editpost" class="editdelete">Edit</a>
@@ -110,9 +103,11 @@
     }
 
   ?>
+          <hr>
           <br>
         </div>
       </div>
+      <?php endforeach ?>
     </div>
   </div>
 </div>

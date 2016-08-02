@@ -108,6 +108,7 @@ class SignUpController extends PageController {
 
 			// Log the user in
 			$_SESSION['id'] = $this->dbc->insert_id;
+			$_SESSION['privilege'] = 'user';
 
 			// Redirect the user to the home page
 			header('Location: index.php?page=home');
