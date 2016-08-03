@@ -60,6 +60,13 @@
 			$controller = new EditCommentController($dbc);
 		break;
 
+		// Search page
+
+		case 'search' :
+			require 'app/controllers/SearchController.php';
+			$controller = new SearchController($dbc);
+		break;
+
 		case 'logout':
 			unset($_SESSION['id']);
 			unset($_SESSION['privilege']);

@@ -2,8 +2,8 @@
 
 class LoginController extends PageController {
 
-	private $userNameMessage;
-	private $passwordMessage;
+	// private $userNameMessage;
+	// private $passwordMessage;
 
 	public function __construct($dbc) {
 
