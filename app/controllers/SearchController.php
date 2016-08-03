@@ -11,7 +11,6 @@ class SearchController extends PageController {
 		$this->mustBeLoggedIn();
 
 		$this->getSearch();
-
 	} 
 
 	// Methods (functions)
@@ -29,11 +28,11 @@ class SearchController extends PageController {
 
 		$this->data['searchTerm'] = $searchTerm;
 
-		$sql = "SELECT posts.id, title AS score_title, description AS score_description
+		$sql = "SELECT posts.id, title AS score_title, content AS score_content
 				FROM posts
 				WHERE 
 					title LIKE '%$searchTerm%' OR
-					description LIKE '%$searchTerm%'
+					content LIKE '%$searchTerm%'
 				ORDER BY score_title ASC";
 
 		$result = $this->dbc->query($sql);
