@@ -112,4 +112,6 @@ class ViewPostController extends PageController {
 
 	}
 
+	
+
 }

@@ -13,7 +13,7 @@
 
       <div class="col-sm-9">
         <h2>Make a post</h2>
-        <form action="" method="post" id="postform">
+        <form action="index.php?page=viewpost&postid=<?= $_GET['postid'] ?>" method="post" id="postform">
         <label for="title">Title</label>
         <br>
         <input type="text" name="title" placeholder="Post title" id="title">
@@ -25,7 +25,7 @@
         <br>
         <span id="postMessage"></span>
         <br>
-        <input type="submit" name="postsubmit" value="Make your post" id="postsubmit" class="btn btn-success">
+        <input type="submit" name="postsubmit" value="Submit your post" id="postsubmit" class="btn btn-success">
         </form>
       </div>
     </div>

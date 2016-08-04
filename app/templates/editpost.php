@@ -25,7 +25,7 @@
         <br>
         <span id="postmessage"></span>
         <br>
-        <input type="submit" value="Edit your post" id="postsubmit" class="btn btn-success">
+        <input type="submit" value="Edit your post" name="editpost" id="postsubmit" class="btn btn-success">
         </form>
       </div>
     </div>
