@@ -22,40 +22,7 @@
       <br>
 
       <hr>
-      <?php foreach($allPosts as $item): ?>
-      <h2><a href="index.php?page=viewpost&postid=<?= $item['id'] ?>"><?= htmlentities($item['title']) ?></a></h2>
-      <h5><span class="glyphicon glyphicon-time"></span> Post by <?= $this->e($item['username']) ?>, <?= $item['created_at'] ?></h5>
-      <p><?= htmlentities($item['content']) ?></p>
-        <?php
 
-    if( isset($_SESSION['id']) ) {
-
-      if( $_SESSION['id'] == $item['user_id'] || $_SESSION['privilege'] == 'admin' ) {
-        // You own post!
-        ?>
-          <a href="index.php?page=editpost" class="editdelete">Edit</a>
-          <a href="#" class="editdelete">Delete</a>
-
-        <?php
-      }
-
-    }
-
-  ?>
-
-      
-      
-
-      <hr>
-        <p>Comments:<span class="badge"><?= $this->e($item['commentCount']) ?></span></p><br>
-      
-      <div class="row">
-        <div class="col-sm-10">
-          <br>
-        </div>
-        </div>
-      <hr>
-       <?php endforeach ?>
         </div>
       </div>
     </div>

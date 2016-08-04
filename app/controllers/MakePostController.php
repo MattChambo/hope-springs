@@ -8,6 +8,7 @@ class MakePostController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
+		
 		// Save database connection
 		$this->dbc = $dbc;
 

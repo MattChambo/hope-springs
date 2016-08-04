@@ -60,6 +60,13 @@
 			$controller = new EditCommentController($dbc);
 		break;
 
+		//Wellcome page
+
+		case 'wellcome':
+			require 'app/controllers/WellcomeController.php';
+			$controller = new WellcomeController($dbc);
+		break;
+
 		// Search page
 
 		case 'search' :

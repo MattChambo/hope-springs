@@ -44,7 +44,7 @@ class ViewPostController extends PageController {
 		// Get info about this post
 		$sql = "SELECT id, title, content, created_at, updated_at, user_id
 				FROM posts 
-				WHERE posts.id = $postID";
+				WHERE id = $postID";
 
 		// Run the SQL
 		$result = $this->dbc->query($sql);
@@ -80,9 +80,15 @@ class ViewPostController extends PageController {
 		// Validate the comment
 		$totalErrors = 0;
 		// Minimum length
-
+		if(strlen($_POST['comment']) < 3) {
+			$this->data['commentMessage'] = 'Your comment must be at least three charcters';
+			$totalErrors++;
+		}
 		// Maximum length (10000)
-
+		if(strlen($_POST['comment']) > 10000) {
+			$this->data['commentMessage'] = 'Your comment can not be more than 10,000 characters long';
+			$totalErrors++;
+		}
 		// If passed, add to database
 		if( $totalErrors == 0 ) {
 
@@ -100,8 +106,6 @@ class ViewPostController extends PageController {
 
 			// Run the SQL
 			$this->dbc->query($sql);
-
-			// Make sure the query worked
 
 
 		}

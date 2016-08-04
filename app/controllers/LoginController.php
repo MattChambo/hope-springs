@@ -2,8 +2,8 @@
 
 class LoginController extends PageController {
 
-	// private $userNameMessage;
-	// private $passwordMessage;
+	 private $userNameMessage;
+	 private $passwordMessage;
 
 	public function __construct($dbc) {
 
@@ -74,7 +74,7 @@ class LoginController extends PageController {
 					FROM user
 					WHERE username = '$filteredUsername'	";
 
-						// Run the query
+			// Run the query
 			$result = $this->dbc->query( $sql );
 
 			// Is there a result?

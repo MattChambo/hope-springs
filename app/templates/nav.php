@@ -22,7 +22,7 @@
         <?php endif; ?>
       </ul>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="index.php?page=viewpost">Wellcome to Hope Springs!</a></li>
+        <li class="active"><a href="index.php?page=wellcome">Wellcome to Hope Springs!</a></li>
         <li><a href="#section2">Post 2</a></li>
         <li><a href="#section3">Post 3</a></li>
         <li><a href="#section4">Post 4</a></li>

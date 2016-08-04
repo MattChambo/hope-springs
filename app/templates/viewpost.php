@@ -40,14 +40,16 @@
 
       <hr>
       </div>
+      <?php if( isset($_SESSION['id']) ): ?>
       <h4>Leave a Comment:</h4>
         <form role="form" action="index.php?page=viewpost&postid=<?= $_GET['postid'] ?>" method="post">
           <div class="form-group">
             <textarea name="comment" class="form-control" rows="3" required></textarea>
           </div>
-           <span id="commentmessage"></span><br>
+           <span id="commentMessage" name="commentMessage"></span><br>
           <button type="submit" class="btn btn-success" name="new-comment">Submit</button>
         </form>
+      <?php endif; ?>
       <br><br>
       
 

@@ -35,11 +35,13 @@ class HomeController extends PageController {
 	private function getLatestPosts() {
 
 		// Prepare some SQL
-		$sql = "SELECT * 
-				FROM posts
-				JOIN user
-				ON user_id = user.id
+		$sql = "SELECT posts.id, posts.user_id, posts.title, posts.content, posts.updated_at, posts.created_at, user.username,
+				(SELECT COUNT(comment)
+				FROM `comments`
+				WHERE comments.post_id = posts.id) as commentCount
+				FROM posts JOIN user ON user_id = user.id 
 				";
+
 
 		// Run the SQL and capture the result
 		$result = $this->dbc->query($sql);
@@ -53,6 +55,5 @@ class HomeController extends PageController {
 
 
 	}
-
 
 }
