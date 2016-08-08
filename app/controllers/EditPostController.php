@@ -85,4 +85,69 @@ class EditPostController extends PageController {
 			}	
 		}
 	}
+
+		private function processPostEdit() {
+
+		// Validation
+		$totalErrors = 0;
+
+		$title = $_POST['title'];
+		$post = $_POST['content'];
+
+		// Title
+		if( strlen($title) > 80 ){
+			$totalErrors++;
+			$this->data['titleError'] = 'Your title cannot be more than 80 characters long';
+		}
+
+		if( strlen($title) == 0){
+			$totalErrors++;
+			$this->data['titleError'] = 'You must include a title';
+		}
+
+		if( strlen($post) > 10000 ){
+			$totalErrors++;
+			$this->data['postError'] = 'Your post cannot be more than 10000 characters long';
+		}
+
+		if( strlen($post) == 0){
+			$totalErrors++;
+			$this->data['postError'] = 'You must include a post';
+		}
+
+		// If there are no errors
+		if( $totalErrors == 0 ) {
+
+			$postID = $this->dbc->real_escape_string($_GET['id']);
+
+			// Filter the data
+			$title = $this->dbc->real_escape_string($title);
+			$desc = $this->dbc->real_escape_string($post);
+
+			$userId = $_SESSION['id'];
+
+			// Prepare the SQL
+			$sql = "UPDATE posts
+					SET title = '$title',
+					content = '$post',
+					WHERE id = $postID ";
+
+				if($_SESSION['privilege'] != 'admin') {
+					$sql .= " AND user_id = $userId";
+				}
+
+			$this->dbc->query($sql);
+
+			// Validation
+			if( $this->dbc->affected_rows == 0) {
+				$this->data['updateMessage'] = 'Nothing changed. there must have been an error';
+			} else {
+
+				// Redirect the user to the post page
+				header("Location: index.php?page=post&postid=$postID");
+			}
+
+		}
+
+	}
 }

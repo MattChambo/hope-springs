@@ -10,6 +10,12 @@ class ViewPostController extends PageController {
 		// Save database connection
 		$this->dbc = $dbc;
 
+		// Does the user want to delete the post?
+		if( isset($_GET['delete']) ){
+			$this->deletePost();
+		}
+
+
 		// Did the user add a comment?
 		if( isset($_POST['new-comment']) ) {
 			$this->processNewComment();
@@ -18,22 +24,23 @@ class ViewPostController extends PageController {
 
 	public function buildHTML() {
 		
-		// Insantiate (create instance of) Plates library
-		$plates = new League\Plates\Engine('app/templates');
+		// // Insantiate (create instance of) Plates library
+		// $plates = new League\Plates\Engine('app/templates');
 
-		$post = $this->getPostData();
+		 $post = $this->getPostData();
 
-		// Prepare a container for data
-		$data = [];
+		// // Prepare a container for data
+		// $data = [];
 
-		$data['post'] = $post;
+		// $data['post'] = $post;
 
-		if($this->commentMessage != '') {
-			$data['commentMessage'] = $this->commentMessage;
-		}
+		// if($this->commentMessage != '') {
+		// 	$data['commentMessage'] = $this->commentMessage;
+		// }
 
 
-		echo $plates->render('viewpost', $this->data);
+		// echo $plates->render('viewpost', $this->data);
+		echo $this->plates->render('viewpost', $this->data);
 	}
 
 	private function getPostData() {
@@ -59,6 +66,7 @@ class ViewPostController extends PageController {
 
 		}
 
+
 		// Get all the comments!
 		$sql = "SELECT comments.id, user_id, comment, username, updated_at, created_at
 				FROM comments
@@ -71,8 +79,9 @@ class ViewPostController extends PageController {
 		$result = $this->dbc->query($sql);
 
 		// Extract the data as an associative array
-
+		if( !$result || $result->num_rows == 0 ){
 		$this->data['allComments'] = $result->fetch_all(MYSQLI_ASSOC);
+		}
 	}
 
 	private function processNewComment() {
@@ -111,6 +120,47 @@ class ViewPostController extends PageController {
 		}
 
 	}
+
+	private function deletePost() {
+
+		// If user is not logged in
+		if( !isset($_SESSION['id']) ) {
+			return;
+		}
+
+		// Make sure the user owns this post
+		$postID = $this->dbc->real_escape_string($_GET['postid']);
+		$userID = $_SESSION['id'];
+		$privilege = $_SESSION['privilege'];
+
+		// If the user is not an admin
+		if( $privilege != 'admin' ) {
+			$sql .= " AND user_id = $userID";
+		}
+
+		// Run this query
+		$result = $this->dbc->query($sql);
+
+		// If the query failed either post doesn't exist or you don't own the post
+		if( !$result || $result->num_rows == 0 ) {
+			return;
+		}
+
+		$result = $result->fetch_assoc();
+
+		// Prepare the SQL
+		$sql = "DELETE FROM posts
+				WHERE id = $postID ";
+
+			// Run the query
+			$this->dbc->query($sql);
+
+			// Redirect the user back to the stream
+			// This post is dead
+			header('Location: index.php?page=stream');
+			die();
+
+		}
 
 	
 

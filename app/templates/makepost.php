@@ -13,7 +13,7 @@
 
       <div class="col-sm-9">
         <h2>Make a post</h2>
-        <form action="index.php?page=viewpost&postid=<?= $_GET['postid'] ?>" method="post" id="postform">
+        <form action="index.php?page=makepost" method="post" id="postform">
         <label for="title">Title</label>
         <br>
         <input type="text" name="title" placeholder="Post title" id="title">

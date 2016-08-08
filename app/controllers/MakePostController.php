@@ -80,13 +80,13 @@ class MakePostController extends PageController {
 
 			$this->dbc->query( $sql );
 
-
 			// Make sure it worked
 			if ( $this->dbc->affected_rows ) {
-				$this->data['postMessage'] = 'Success!';
-			} else {
-				$this->data['postMessage'] = 'Something went wrong!';
-			}
+				// echo 'The ID is: '.$this->insert_id;
+				$postID = $this->dbc->insert_id;
+				header('Location: index.php?page=viewpost&postid='.$postID);
+			} 
+
 
 		}
 

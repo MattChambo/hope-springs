@@ -28,8 +28,12 @@
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
           ?>
-          <a href="index.php?page=editpost" class="editdelete">Edit</a>
-          <a href="#" class="editdelete">Delete</a>
+          <a href="index.php?page=editpost&postid=<?= $_GET['postid'] ?>" class="editdelete">Edit</a>
+          <button id="deletePost" class="editdelete">Delete</button>
+          <div id="deletePostOptions">
+            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete">Yes</a> / <button>No</button>
+          </div>
+
 
         <?php
       }
@@ -66,9 +70,9 @@
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
               ?>
-          <a href="index.php?page=editpost" class="editdelete">Edit</a>
-          <a href="#" class="editdelete">Delete</a>
-
+            <a href="index.php?page=editpost" class="editdelete">Edit</a>
+            <a href="#" class="editdelete">Delete</a>
+ 
         <?php
       }
 
@@ -88,3 +92,21 @@
   <p>&copy; Matthew William Chamberlain <a href="http://mattchambo.github.io/oh-green-september/" class="footerlink">Visit Matts poetry and music website!</a></p>
 
 </footer>
+
+<script>
+  
+  // Wait for all the stuff to be ready
+  $(document).ready(function() {
+
+    // When the user clicks on the delete button
+    $('#deletePost, #deletePostOptions button').click(function(){
+
+      // Toggle the visibilty of the controls
+      $('#deletePostOptions').toggle();
+
+    });
+
+  });
+
+</script>
+

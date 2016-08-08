@@ -99,13 +99,7 @@ class LoginController extends PageController {
 					$this->data['loginMessage'] = 'User name or password incorrect';
 				}
 
-			} else {
-
-				// Credential do not match our records
-				$this->data['loginMessage'] = 'User name or password incorrect';
-
-
-			}
+			} 
 
 		}
 
