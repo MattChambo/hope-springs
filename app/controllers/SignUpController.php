@@ -21,13 +21,15 @@ class SignUpController extends PageController {
 	}
 
 	public function buildHTML() {
-		// Insantiate (create instance of) Plates library
-		$plates = new League\Plates\Engine('app/templates');
+		// // Insantiate (create instance of) Plates library
+		// $plates = new League\Plates\Engine('app/templates');
 
-		// Prepare a container for data
-		$data = [];
+		// // Prepare a container for data
+		// $data = [];
 
-		echo $plates->render('signup', $data);
+		// echo $plates->render('signup', $data);
+
+		echo $this->plates->render('signup', $this->data);
 	}
 
 	private function processNewAccountDetails() {
@@ -80,9 +82,15 @@ class SignUpController extends PageController {
 		if( strlen($_POST['password']) < 8 ) {
 			// Password is too short
 			$totalErrors++;
-			$this->passwordMessage = 'Password must be at least 8 characters';
+			$this->data['passwordMessage'] = 'Password must be at least 8 characters';
 			
 
+		}
+
+		// If the reentered password is not the same as the password
+		if(($_POST['password']) != ($_POST['reenterpassword'])) {
+			$totalErrors++;
+			$this->data['reenterPasswordMessage'] = 'Your reentered password must be the same as your password';
 		}
 
 		// If total errors is still 0

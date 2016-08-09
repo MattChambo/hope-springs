@@ -25,5 +25,6 @@
 				<br>
 				<span id="reenterPasswordMessage"><?= isset($reenterPasswordMessage) ? $reenterPasswordMessage : '' ?></span><br>
 				<input type="submit" value="Sign up now!" name="signupsubmit" id="signupsubmit" class="btn btn-success">
+				<a href="index.php?page=home">Return to home page</a>
 			</form>
 		</div>

@@ -59,13 +59,12 @@ class ViewPostController extends PageController {
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
 		// Redirect user to 404 page
-		//header('Location: index.php?page=notfound');
+		header('Location: index.php?page=notfound');
 		} else {
 		// Yay!
 			$this->data['post'] = $result->fetch_assoc();
 
 		}
-
 
 		// Get all the comments!
 		$sql = "SELECT comments.id, user_id, comment, username, updated_at, created_at
@@ -79,9 +78,9 @@ class ViewPostController extends PageController {
 		$result = $this->dbc->query($sql);
 
 		// Extract the data as an associative array
-		if( !$result || $result->num_rows == 0 ){
-		$this->data['allComments'] = $result->fetch_all(MYSQLI_ASSOC);
-		}
+		if( $result || $result->num_rows > 0 ){
+			$this->data['allComments'] = $result->fetch_all(MYSQLI_ASSOC);		
+		} 
 	}
 
 	private function processNewComment() {
@@ -133,7 +132,10 @@ class ViewPostController extends PageController {
 		$userID = $_SESSION['id'];
 		$privilege = $_SESSION['privilege'];
 
-		// If the user is not an admin
+		$sql = "SELECT content
+				FROM posts
+				WHERE id = $postID";
+
 		if( $privilege != 'admin' ) {
 			$sql .= " AND user_id = $userID";
 		}
@@ -146,19 +148,21 @@ class ViewPostController extends PageController {
 			return;
 		}
 
-		$result = $result->fetch_assoc();
-
 		// Prepare the SQL
 		$sql = "DELETE FROM posts
 				WHERE id = $postID ";
 
-			// Run the query
-			$this->dbc->query($sql);
+		// If the user is not an admin
+		if( $privilege != 'admin' ) {
+			$sql .= " AND user_id = $userID";
+		}
 
-			// Redirect the user back to the stream
-			// This post is dead
-			header('Location: index.php?page=stream');
-			die();
+		// Run this query
+		$this->dbc->query($sql);
+
+		// Redirect the user back to the home page
+		header('Location: index.php?page=home');
+		die();
 
 		}
 

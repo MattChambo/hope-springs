@@ -27,12 +27,13 @@
 
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
-          ?>
-          <a href="index.php?page=editpost&postid=<?= $_GET['postid'] ?>" class="editdelete">Edit</a>
-          <button id="deletePost" class="editdelete">Delete</button>
-          <div id="deletePostOptions">
-            <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete">Yes</a> / <button>No</button>
-          </div>
+            ?>
+              <a href="index.php?page=editpost&postid=<?= $_GET['postid'] ?>" class="editdelete">Edit</a>
+              <button id="deletePost" class="editdelete">Delete</button>
+            <div id="deletePostOptions">
+              <span>Are you sure you want to delete the post?</span>
+              <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+            </div>
 
 
         <?php
@@ -56,13 +57,13 @@
       <?php endif; ?>
       <br><br>
       
-
-      <p><span class="badge"><?= count($allComments) ?></span> Comments:</p><br>
+      <?php if(count($allComments) > 0 ): ?>
+        <p><span class="badge"><?= count($allComments) ?></span> Comments:</p><br>
       <?php foreach($allComments as $comment): ?>
-      <div class="row">
-        <div class="col-sm-10">
-          <h4><?= htmlentities($comment['username']) ?><small> Comment was last edited on <?= htmlentities($comment['updated_at']) ?></small></h4>
-          <p><?= htmlentities($comment['comment']) ?></p>
+        <div class="row">
+          <div class="col-sm-10">
+           <h4><?= htmlentities($comment['username']) ?><small> Comment was last edited on <?= htmlentities($comment['updated_at']) ?></small></h4>
+            <p><?= htmlentities($comment['comment']) ?></p>
           <?php
 
             if( isset($_SESSION['id']) ) {
@@ -84,6 +85,15 @@
         </div>
       </div>
       <?php endforeach ?>
+        <?php else: ?>
+          <p><span class="badge">0</span> Comments:</p><br>
+        <?php endif; ?>
+
+
+
+
+
+
     </div>
   </div>
 </div>

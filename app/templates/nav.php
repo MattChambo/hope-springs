@@ -18,6 +18,7 @@
           <li><a href="index.php?page=login">Login</a></li>
         <?php endif; ?>
         <?php if(isset($_SESSION['id'])): ?>
+          <li><a href="index.php?page=makepost">Make a post</a></li>
           <li><a href="index.php?page=logout">Logout</a></li>
         <?php endif; ?>
       </ul>
@@ -35,9 +36,7 @@
         <li><a href="#">Post 10</a></li>
         <li><button type="button" class="prevnext">Prev</button><button type="button" class="prevnext">Next</button></li>
         <br>
-        <?php if(isset($_SESSION['id'])): ?>
-          <li><a href="index.php?page=makepost" class="makepost">Make a post</a></li>
-        <?php endif; ?>
+
       </ul><br>
     </div>
 

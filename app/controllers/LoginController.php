@@ -2,17 +2,17 @@
 
 class LoginController extends PageController {
 
-	 private $userNameMessage;
-	 private $passwordMessage;
+	 // private $userNameMessage;
+	 // private $passwordMessage;
 
 	public function __construct($dbc) {
 
 	parent::__construct();
 
+	$this->mustBeLoggedOut();
+
 	// Save database connection
 	$this->dbc = $dbc;
-
-	$this->mustBeLoggedOut();
 
 	if( isset( $_POST['login'] ) ) {
 			$this->processLoginForm();
@@ -35,7 +35,7 @@ class LoginController extends PageController {
 	//  	$data['passwordMessage'] = $this->passwordMessage;
 	//  }
 
-	echo $this->$plates->render('login', $this->$data);
+	echo $this->plates->render('login', $this->data);
 
 	}
 

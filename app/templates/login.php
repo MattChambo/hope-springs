@@ -6,7 +6,7 @@
   <body id="loginbackground">
 		<div id="login">
 			<h1>Login</h1>
-			<form action="" method="post" id="loginform">
+			<form action="index.php?page=login" method="post" id="loginform">
 				<label for="loginUsername">User name:</label>
 				<input type="text" name="username" placeholder="Your user name" id="loginUsername" value="<?= isset($_POST['login']) ? $_POST['username'] : '' ?>">
 				<br>
@@ -19,5 +19,6 @@
           			<?= isset($loginMessage) ? $loginMessage : '' ?>
 				</span><br><br>
 				<input type="submit" name="login" value="Login now!" id="loginsubmit" class="btn btn-success">
+				<a href="index.php?page=home">Return to home page</a>
 			</form>
 		</div>

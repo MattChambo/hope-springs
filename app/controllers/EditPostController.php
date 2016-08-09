@@ -11,6 +11,14 @@ class EditPostController extends PageController {
 		// Save database connection
 		$this->dbc = $dbc;
 
+		$this->mustBeLoggedIn();
+
+		if( isset($_POST['editpost']) ){
+			$this->processPostEdit();
+		}
+
+		// Get information about the post
+		$this->getPostInfo();
 
 	}
 
@@ -122,7 +130,7 @@ class EditPostController extends PageController {
 
 			// Filter the data
 			$title = $this->dbc->real_escape_string($title);
-			$desc = $this->dbc->real_escape_string($post);
+			$post = $this->dbc->real_escape_string($post);
 
 			$userId = $_SESSION['id'];
 
