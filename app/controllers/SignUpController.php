@@ -60,6 +60,12 @@ class SignUpController extends PageController {
 
 		}
 
+		if( strlen($_POST['email']) === 0 ){
+
+			$totalErrors++;
+			$this->data['emailMessage'] = 'You must include an email address';
+		}
+
 		// Make sure the E-mail is not in use
 		$filteredEmail = $this->dbc->real_escape_string( $_POST['email'] );
 
@@ -85,6 +91,12 @@ class SignUpController extends PageController {
 			$this->data['passwordMessage'] = 'Password must be at least 8 characters';
 			
 
+		}
+
+		if( strlen($_POST['password']) > 200 ) {
+			// The password is too long
+			$totalErrors++;
+			$this->data['passwordMessage'] = 'Your password cannot be more than 200 characters';
 		}
 
 		// If the reentered password is not the same as the password

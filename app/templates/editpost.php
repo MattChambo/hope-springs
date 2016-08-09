@@ -3,11 +3,11 @@
     'desc'=>'Edit your post on this page'
   ]); ?>
 
-  <body>
+<body>
 
-<div class="container-fluid">
-  <div class="row content">
-   <?= $this->insert('nav') ?>
+  <div class="container-fluid">
+    <div class="row content">
+    <?= $this->insert('nav') ?>
 
 
       <div class="col-sm-9">
