@@ -3,8 +3,6 @@
     'desc'=>'This is a post from Hope Springs a website for male survivors of physical, sexual or emotional abuse, as well as their families and friends'
   ]);  ?> 
 
-
-
   <body>
 
     <div class="container-fluid">
@@ -28,11 +26,11 @@
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
             ?>
-              <a href="index.php?page=editpost&postid=<?= $_GET['postid'] ?>" class="editdelete">Edit</a>
+              <a href="index.php?page=editpost&postid=<?= $this->e($post['id']) ?>" class="editdelete">Edit</a>
               <button id="deletePost" class="editdelete">Delete</button>
             <div id="deletePostOptions">
               <span>Are you sure you want to delete the post?</span>
-              <a href="<?= $_SERVER['REQUEST_URI'] ?>&delete" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+              <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletepost" class="editdelete">Yes</a> / <button class="editdelete">No</button>
             </div>
 
 
@@ -71,9 +69,12 @@
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
               ?>
-            <a href="index.php?page=editpost" class="editdelete">Edit</a>
-            <a href="#" class="editdelete">Delete</a>
- 
+            <a href="index.php?page=editcomment&postid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
+            <button id="deleteComment" class="editdelete">Delete</button>
+            <div id="deleteCommentOptions">
+              <span>Are you sure you want to delete the comment?</span>
+              <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletecomment&CommentID=<?= $comment['commentid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+            </div>
         <?php
       }
 
@@ -113,6 +114,23 @@
 
       // Toggle the visibilty of the controls
       $('#deletePostOptions').toggle();
+
+    });
+
+  });
+
+</script>
+
+<script>
+  
+  // Wait for all the stuff to be ready
+  $(document).ready(function() {
+
+    // When the user clicks on the delete button
+    $('#deleteComment, #deleteCommentOptions button').click(function(){
+
+      // Toggle the visibilty of the controls
+      $('#deleteCommentOptions').toggle();
 
     });
 

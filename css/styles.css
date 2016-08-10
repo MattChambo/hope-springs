@@ -154,6 +154,10 @@
 #deletePostOptions{
 	display: none;
 }
+
+#deleteCommentOptions{
+	display: none;
+}
     
 footer {
      background-color: #555;

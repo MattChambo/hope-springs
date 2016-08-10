@@ -11,8 +11,13 @@ class ViewPostController extends PageController {
 		$this->dbc = $dbc;
 
 		// Does the user want to delete the post?
-		if( isset($_GET['delete']) ){
+		if( isset($_GET['deletepost']) ){
 			$this->deletePost();
+		}
+
+		// Does the user want to delete a comment?
+		if( isset($_GET['deletecomment']) ){
+			$this->deleteComment();
 		}
 
 
@@ -20,6 +25,7 @@ class ViewPostController extends PageController {
 		if( isset($_POST['new-comment']) ) {
 			$this->processNewComment();
 		}
+
 	}
 
 	public function buildHTML() {
@@ -67,7 +73,7 @@ class ViewPostController extends PageController {
 		}
 
 		// Get all the comments!
-		$sql = "SELECT comments.id, user_id, comment, username, updated_at, created_at
+		$sql = "SELECT comments.id AS commentid, user_id, comment, username, updated_at, created_at
 				FROM comments
 				JOIN user
 				ON comments.user_id = user.id
@@ -165,6 +171,40 @@ class ViewPostController extends PageController {
 		die();
 
 		}
+
+	private function deleteComment() {
+
+		if( !isset($_SESSION['id']) ) {
+			return;
+		}
+
+		$userID = $_SESSION['id'];
+		$privilege = $_SESSION['privilege'];
+		$commentID = $_GET['CommentID'];
+		$sql = "SELECT id, comment
+				FROM comments
+				WHERE id = $commentID";
+		if( $privilege != 'admin' ) {
+			$sql .= " AND user_id = $userID";
+		}
+
+		// Run this query
+		$result = $this->dbc->query($sql);
+
+		// If the query failed either post doesn't exist or you don't own the post
+		if( !$result || $result->num_rows == 0 ) {
+			return;
+		}
+
+		$sql = "DELETE FROM comments
+				WHERE id = $commentID ";
+
+		$this->dbc->query($sql);
+
+		$postID = $_GET['postid'];
+		header('Location: index.php?page=viewpost&postid='.$postID);
+		die();
+	}
 
 	
 

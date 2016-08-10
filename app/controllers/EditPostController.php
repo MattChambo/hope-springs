@@ -13,12 +13,15 @@ class EditPostController extends PageController {
 
 		$this->mustBeLoggedIn();
 
+		// Get information about the post
+		 $this->getPostInfo();
+
 		if( isset($_POST['editpost']) ){
 			$this->processPostEdit();
 		}
 
-		// Get information about the post
-		$this->getPostInfo();
+	
+
 
 	}
 
@@ -46,7 +49,7 @@ class EditPostController extends PageController {
 		private function getPostInfo() {
 
 		// Get the POST ID from the GET array
-		$postID = $this->dbc->real_escape_string($_GET['id']);
+		$postID = $this->dbc->real_escape_string($_GET['postid']);
 
 		// Get the user ID
 		$userID = $_SESSION['id'];
@@ -152,7 +155,7 @@ class EditPostController extends PageController {
 			} else {
 
 				// Redirect the user to the post page
-				header("Location: index.php?page=post&postid=$postID");
+				 header("Location: index.php?page=viewpost&postid=$postID");
 			}
 
 		}
