@@ -73,7 +73,7 @@ class ViewPostController extends PageController {
 		}
 
 		// Get all the comments!
-		$sql = "SELECT comments.id AS commentid, user_id, comment, username, updated_at, created_at
+		$sql = "SELECT comments.id AS commentid, user_id, comment, username, updated_at, created_at, post_id
 				FROM comments
 				JOIN user
 				ON comments.user_id = user.id

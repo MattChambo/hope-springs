@@ -14,9 +14,9 @@
         <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data" id="commentform">
           <label for="comment">Your comment</label>
           <br>
-          <textarea name="comment" id="comment" cols="80" rows="20" class="inputField"></textarea>
+          <textarea name="comment" id="comment" cols="80" rows="20" class="inputField"><?= $post['comment'] ?></textarea>
           <br>
-          <span id="commentmessage"><?= isset($commentError) ? $commentError : '' ?></span>
+          <span id="commentMessage"><?= isset($commentError) ? $commentError : '' ?></span>
           <br>
           <input type="submit" value="Edit your comment" name="editcomment" id="commentsubmit" class="btn btn-success">
           <br>

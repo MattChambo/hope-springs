@@ -21,7 +21,7 @@
             <br>
             <label for="post">Your post</label>
             <br>
-            <textarea name="post" id="post" cols="80" rows="20" class="inputField"><?= $post['content'] ?></textarea>
+            <textarea name="content" id="post" cols="80" rows="20" class="inputField"><?= $post['content'] ?></textarea>
             <br>
             <span id="postMessage"><?= isset($postError) ? $postError : '' ?></span>
             <br>

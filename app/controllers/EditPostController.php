@@ -13,15 +13,12 @@ class EditPostController extends PageController {
 
 		$this->mustBeLoggedIn();
 
-		// Get information about the post
-		 $this->getPostInfo();
-
 		if( isset($_POST['editpost']) ){
 			$this->processPostEdit();
 		}
 
-	
-
+		// Get information about the post
+		 $this->getPostInfo();
 
 	}
 
@@ -98,7 +95,6 @@ class EditPostController extends PageController {
 	}
 
 		private function processPostEdit() {
-
 		// Validation
 		$totalErrors = 0;
 
@@ -129,7 +125,7 @@ class EditPostController extends PageController {
 		// If there are no errors
 		if( $totalErrors == 0 ) {
 
-			$postID = $this->dbc->real_escape_string($_GET['id']);
+			$postID = $this->dbc->real_escape_string($_GET['postid']);
 
 			// Filter the data
 			$title = $this->dbc->real_escape_string($title);
@@ -140,7 +136,7 @@ class EditPostController extends PageController {
 			// Prepare the SQL
 			$sql = "UPDATE posts
 					SET title = '$title',
-					content = '$post',
+					content = '$post'
 					WHERE id = $postID ";
 
 				if($_SESSION['privilege'] != 'admin') {

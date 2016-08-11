@@ -13,7 +13,7 @@ class EditCommentController extends PageController {
 		$this->mustBeLoggedIn();
 
 		if( isset($_POST['editcomment']) ){
-			$this->processCommentEdit();
+		$this->processCommentEdit();
 		}
 
 		// Get information about the post
@@ -41,13 +41,13 @@ class EditCommentController extends PageController {
 	private function getCommentInfo() {
 
 		// Get the POST ID from the GET array
-		$commentID = $this->dbc->real_escape_string($_GET['id']);
+		$commentID = $this->dbc->real_escape_string($_GET['commentid']);
 
 		// Get the user ID
 		$userID = $_SESSION['id'];
 
 		// Prepare the query
-		$sql= "SELECT comment
+		$sql= "SELECT id, comment, post_id
 				FROM comments
 				WHERE id = $commentID ";
 
@@ -105,7 +105,9 @@ class EditCommentController extends PageController {
 		// If there are no errors
 		if( $totalErrors == 0 ) {
 
-			$postID = $this->dbc->real_escape_string($_GET['id']);
+			$postID = $this->dbc->real_escape_string($_GET['postid']);
+
+			$commentID = $this->dbc->real_escape_string($_GET['commentid']);
 
 			// Filter the data
 			$comment = $this->dbc->real_escape_string($comment);
@@ -115,7 +117,7 @@ class EditCommentController extends PageController {
 			// Prepare the SQL
 			$sql = "UPDATE comments
 					SET comment = '$comment'
-					WHERE id = $postID ";
+					WHERE id = $commentID ";
 
 				if($_SESSION['privilege'] != 'admin') {
 					$sql .= " AND user_id = $userId";
@@ -129,7 +131,7 @@ class EditCommentController extends PageController {
 			} else {
 
 				// Redirect the user to the post page
-				header("Location: index.php?page=home");
+				header("Location: index.php?page=viewpost&postid= $postID");
 			}
 
 		}

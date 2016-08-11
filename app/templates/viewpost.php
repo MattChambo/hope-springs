@@ -69,7 +69,7 @@
               if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
               // You own post!
               ?>
-            <a href="index.php?page=editcomment&postid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
+            <a href="index.php?page=editcomment&postid=<?= $comment['post_id'] ?>&commentid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
             <button id="deleteComment" class="editdelete">Delete</button>
             <div id="deleteCommentOptions">
               <span>Are you sure you want to delete the comment?</span>
