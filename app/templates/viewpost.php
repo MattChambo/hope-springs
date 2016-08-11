@@ -3,6 +3,13 @@
     'desc'=>'This is a post from Hope Springs a website for male survivors of physical, sexual or emotional abuse, as well as their families and friends'
   ]);  ?> 
 
+
+<style type="text/css">
+  .show{
+    display: block;
+  }
+
+</style>
   <body>
 
     <div class="container-fluid">
@@ -70,8 +77,8 @@
               // You own post!
               ?>
             <a href="index.php?page=editcomment&postid=<?= $comment['post_id'] ?>&commentid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
-            <button id="deleteComment" class="editdelete">Delete</button>
-            <div id="deleteCommentOptions">
+            <button class="editdelete deleteComment">Delete</button>
+            <div class="deleteCommentOptions">
               <span>Are you sure you want to delete the comment?</span>
               <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletecomment&CommentID=<?= $comment['commentid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
             </div>
@@ -111,30 +118,26 @@
 
     // When the user clicks on the delete button
     $('#deletePost, #deletePostOptions button').click(function(){
-
       // Toggle the visibilty of the controls
       $('#deletePostOptions').toggle();
-
     });
 
-  });
+    $('.deleteComment').click(function(){
+      $(this).parent().children(".deleteCommentOptions").toggle();
+    });
 
-</script>
-
-<script>
-  
-  // Wait for all the stuff to be ready
-  $(document).ready(function() {
-
-    // When the user clicks on the delete button
-    $('#deleteComment, #deleteCommentOptions button').click(function(){
-
+    $('.deleteCommentOptions button').click(function(){
       // Toggle the visibilty of the controls
-      $('#deleteCommentOptions').toggle();
-
+      $(this).parent().toggle();
+      
     });
 
+
   });
+
+
+
+
 
 </script>
 

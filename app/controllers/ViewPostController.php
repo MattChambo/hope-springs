@@ -78,7 +78,7 @@ class ViewPostController extends PageController {
 				JOIN user
 				ON comments.user_id = user.id
 				WHERE post_id = $postID
-				ORDER BY created_at ASC
+				ORDER BY created_at DESC
 				";
 
 		$result = $this->dbc->query($sql);

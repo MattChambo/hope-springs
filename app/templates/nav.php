@@ -20,6 +20,7 @@
         <?php if(isset($_SESSION['id'])): ?>
           <li><a href="index.php?page=makepost">Make a post</a></li>
           <li><a href="index.php?page=logout">Logout</a></li>
+
         <?php endif; ?>
       </ul>
       <ul class="nav nav-pills nav-stacked">

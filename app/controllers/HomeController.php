@@ -39,7 +39,8 @@ class HomeController extends PageController {
 				(SELECT COUNT(comment)
 				FROM `comments`
 				WHERE comments.post_id = posts.id) as commentCount
-				FROM posts JOIN user ON user_id = user.id 
+				FROM posts JOIN user ON user_id = user.id
+				ORDER BY updated_at DESC
 				";
 
 
