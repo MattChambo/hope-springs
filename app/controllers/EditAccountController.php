@@ -10,12 +10,13 @@ class EditAccountController extends PageController {
 
 	$this->mustBeLoggedIn();
 
+	// Get information about the post
+	 $this->getAccountInfo();
+
 	if( isset($_POST['editaccount']) ){
 		$this->processAccountEdit();
 	}
 
-	// Get information about the post
-	 $this->getAccountInfo();
 
 	}
 
@@ -30,16 +31,14 @@ class EditAccountController extends PageController {
 		$userID = $_SESSION['id'];
 
 		$sql = "SELECT id, username, email, privilege
-				FROM user";
-				
-				if( $_SESSION['privilege'] != 'admin') {
+				FROM user
+				WHERE id = '$userID'";
 
-				$sql .= "WHERE user_id = $userID";
-			}
 		$result = $this->dbc->query($sql);
 
-		$accountInfo = $result->fetch_all(MYSQLI_ASSOC);
+		$accountInfo = $result->fetch_assoc();
 
-		return $accountInfo;
+		$this->data['accountInfo'] = $accountInfo;
+		// return $accountInfo;
 	}
 }
