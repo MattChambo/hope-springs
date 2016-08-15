@@ -4,6 +4,7 @@
 
 	require 'vendor/autoload.php';
 	require 'app/controllers/PageController.php';
+	require 'app/controllers/NavController.php';
 
 	$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
@@ -58,6 +59,13 @@
 		case 'editcomment':
 			require 'app/controllers/EditCommentController.php';
 			$controller = new EditCommentController($dbc);
+		break;
+
+		// Edit account page
+
+		case 'editaccount':
+			require 'app/controllers/EditAccountController.php';
+			$controller = new EditAccountController($dbc);
 		break;
 
 		//Wellcome page

@@ -70,7 +70,7 @@ class LoginController extends PageController {
 		if($totalErrors == 0) {
 			$filteredUsername = $this->dbc->real_escape_string( $_POST['username'] );
 
-			$sql = "SELECT id, password
+			$sql = "SELECT id, password, privilege
 					FROM user
 					WHERE username = '$filteredUsername'	";
 

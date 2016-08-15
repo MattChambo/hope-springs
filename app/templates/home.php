@@ -12,7 +12,6 @@
 <div class="container-fluid">
   <div class="row content">
     <?= $this->insert('nav') ?>
-
     <div class="col-sm-9">
       <hr>
       <h2>Wellcome to Hope Springs!</h2>

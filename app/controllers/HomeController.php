@@ -23,10 +23,6 @@ class HomeController extends PageController {
 
 		$data['allPosts'] = $allData;
 
-		if($this->commentMessage != '') {
-			$data['commentMessage'] = $this->commentMessage;
-		}
-
 		echo $plates->render('home', $data);
 	}
 
@@ -56,5 +52,4 @@ class HomeController extends PageController {
 
 
 	}
-
 }
