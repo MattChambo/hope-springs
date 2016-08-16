@@ -15,11 +15,11 @@
 				<span id="userNameMessage"><?= isset($userNameMessage) ? $userNameMessage : '' ?></span>
 				<br>
 				<label for="email">Email address:</label>
-				<input type="text" name="email" placeholder="Enter your email address" value="" id="email">
+				<input type="text" name="email" placeholder="Enter your email address" value="<?= $accountInfo['email'] ?>" id="email">
 				<br>
 				<span id="emailMessage"><?= isset($emailMessage) ? $emailMessage : '' ?></span><br>
 				<label for="password">Password:</label>
-				<input type="password" name="password" placeholder="Create a password" id="password">
+				<input type="password" name="password" placeholder="Create a new password" id="password">
 				<br>
 				<span id="passwordMessage"><?= isset($passwordMessage) ? $passwordMessage : '' ?></span><br>
 				<label for="reenterpassword">Reenter Password:</label>
@@ -28,6 +28,28 @@
 				<span id="reenterPasswordMessage"><?= isset($reenterPasswordMessage) ? $reenterPasswordMessage : '' ?></span><br>
 				<input type="submit" value="Edit your account details" name="editaccount" id="editAccountSubmit" class="btn btn-success">
 				<br>
-				<a href="index.php?page=home">Return to home page</a>
+				<br>
+				
 			</form>
+				<button id="deleteAccount">Delete your account</button>
+				<div id="deleteAccountOptions">
+					<a href="<?= $_SERVER['REQUEST_URI'] ?>&deleteaccount&userid=<?= $_GET['accountid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+				</div>
+				<br>
+				<br>
+				<a href="index.php?page=home">Return to home page</a>
 		</div>
+
+<script>
+		// Wait for all the stuff to be ready
+	$(document).ready(function() {
+
+		// When the user clicks on the delete button
+		$('#deleteAccount').click(function(){
+			// Toggle the visibilty of the controls
+			$('#deleteAccountOptions').toggle();
+
+		});
+
+	});
+</script>

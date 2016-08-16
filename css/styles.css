@@ -31,6 +31,8 @@
 	border: none;
 	margin-right: 5px;
 	margin-top: 10px;
+	text-decoration: none;
+	color: black;
 }
 
 .pagetitle {
@@ -151,7 +153,11 @@
      height: 100%;
 }
 
-#deletePostOptions{
+#deletePostOptions {
+	display: none;
+}
+
+#deleteAccountOptions {
 	display: none;
 }
 
