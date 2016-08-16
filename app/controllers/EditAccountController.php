@@ -131,5 +131,4 @@ class EditAccountController extends PageController {
 				die();
 			}
 		}
-
 }
