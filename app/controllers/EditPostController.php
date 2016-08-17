@@ -8,7 +8,7 @@ class EditPostController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
-		// Save database connection
+
 		$this->dbc = $dbc;
 
 		$this->mustBeLoggedIn();
@@ -23,22 +23,7 @@ class EditPostController extends PageController {
 	}
 
 	public function buildHTML() {
-		// // Insantiate (create instance of) Plates library
-		// $plates = new League\Plates\Engine('app/templates');
-
-		// // Prepare a container for data
-		// $data = [];
-
-		// if($this->titleMessage != '') {
-		// 	$data['titleMessage'] = $this->titleMessage;
-		// }
-
-		// if($this->postMessage != '') {
-		// 	$data['postMessage'] = $this->postMessage;
-		// }
-
-		// echo $plates->render('editpost', $data);
-
+		
 		echo $this->plates->render('editpost', $this->data);
 
 	}
@@ -66,19 +51,16 @@ class EditPostController extends PageController {
 
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
-			// Send the user back to the post page
-			// They probably didn't own the post OR the post was deleted
+			// Send the user back to the view post page
+			// They probably didn't own the post or the post was deleted
 			header("Location: index.php?page=viewpost&postid=$postID");
 		} else {
 
-			// WAIT!
-			// What if the user has submited the form?
-			// We don't want to lose their changes
+			// If the user has submited the form we don't want to lose their changes
 			if( isset($_POST['editpost'])) {
-				// USE THE FORM DATA!
+				// Use the form data
 				$this->data['post'] = $_POST;
 
-				// Use the original title
 				$result = $result->fetch_assoc();
 				$this->data['originalTitle'] = $result['title'];
 
@@ -101,7 +83,6 @@ class EditPostController extends PageController {
 		$title = $_POST['title'];
 		$post = $_POST['content'];
 
-		// Title
 		if( strlen($title) > 80 ){
 			$totalErrors++;
 			$this->data['titleError'] = 'Your title cannot be more than 80 characters long';
@@ -150,7 +131,7 @@ class EditPostController extends PageController {
 				$this->data['updateMessage'] = 'Nothing changed. there must have been an error';
 			} else {
 
-				// Redirect the user to the post page
+				// Redirect the user to the view post page
 				 header("Location: index.php?page=viewpost&postid=$postID");
 			}
 

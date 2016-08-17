@@ -29,23 +29,10 @@ class ViewPostController extends PageController {
 	}
 
 	public function buildHTML() {
-		
-		// // Insantiate (create instance of) Plates library
-		// $plates = new League\Plates\Engine('app/templates');
 
-		 $post = $this->getPostData();
+		// Get all of the relevant post data
+		$post = $this->getPostData();
 
-		// // Prepare a container for data
-		// $data = [];
-
-		// $data['post'] = $post;
-
-		// if($this->commentMessage != '') {
-		// 	$data['commentMessage'] = $this->commentMessage;
-		// }
-
-
-		// echo $plates->render('viewpost', $this->data);
 		echo $this->plates->render('viewpost', $this->data);
 	}
 
@@ -64,15 +51,15 @@ class ViewPostController extends PageController {
 
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
-		// Redirect user to 404 page
+		// Redirect user to not found page
 		header('Location: index.php?page=notfound');
 		} else {
-		// Yay!
+		// it worked!
 			$this->data['post'] = $result->fetch_assoc();
 
 		}
 
-		// Get all the comments!
+		// Get all the comments and order them by when they were created.
 		$sql = "SELECT comments.id AS commentid, user_id, comment, username, updated_at, created_at, post_id
 				FROM comments
 				JOIN user
@@ -81,6 +68,7 @@ class ViewPostController extends PageController {
 				ORDER BY created_at DESC
 				";
 
+		// Run query and put it in result variable
 		$result = $this->dbc->query($sql);
 
 		// Extract the data as an associative array
@@ -93,17 +81,17 @@ class ViewPostController extends PageController {
 
 		// Validate the comment
 		$totalErrors = 0;
-		// Minimum length
+		// Minimum length is 3
 		if(strlen($_POST['comment']) < 3) {
 			$this->data['commentMessage'] = 'Your comment must be at least three charcters';
 			$totalErrors++;
 		}
-		// Maximum length (10000)
+		// Maximum length is 10000
 		if(strlen($_POST['comment']) > 10000) {
 			$this->data['commentMessage'] = 'Your comment can not be more than 10,000 characters long';
 			$totalErrors++;
 		}
-		// If passed, add to database
+		// If validation passed, add to database
 		if( $totalErrors == 0 ) {
 
 			// Filter the comment
@@ -120,7 +108,6 @@ class ViewPostController extends PageController {
 
 			// Run the SQL
 			$this->dbc->query($sql);
-
 
 		}
 
@@ -196,12 +183,16 @@ class ViewPostController extends PageController {
 			return;
 		}
 
+		// Prepare sql to delete comment
 		$sql = "DELETE FROM comments
 				WHERE id = $commentID ";
 
+		// Run the query
 		$this->dbc->query($sql);
 
 		$postID = $_GET['postid'];
+
+		// Go to the post page
 		header('Location: index.php?page=viewpost&postid='.$postID);
 		die();
 	}

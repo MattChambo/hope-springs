@@ -8,13 +8,15 @@ class SearchController extends PageController {
 		// Save the database conection
 		$this->dbc = $dbc;
 
+		// Make sure the user is logged in
 		$this->mustBeLoggedIn();
 
+		// Get the search results
 		$this->getSearch();
 	} 
 
-	// Methods (functions)
 	public function buildHTML() {
+
 		echo $this->plates->render('search', $this->data);
 	}
 
@@ -28,6 +30,7 @@ class SearchController extends PageController {
 
 		$this->data['searchTerm'] = $searchTerm;
 
+		// See if the search terms are found in the title or the post
 		$sql = "SELECT posts.id, title AS score_title, content AS score_content
 				FROM posts
 				WHERE 
@@ -37,6 +40,7 @@ class SearchController extends PageController {
 
 		$result = $this->dbc->query($sql);
 
+		// Check to see if there are any results, get results if there are, display message if there aren't
 		if( !$result || $result->num_rows == 0){
 			$this->data['searchResults'] = "No Results";
 		} else {

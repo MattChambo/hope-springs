@@ -13,7 +13,7 @@ class SignUpController extends PageController {
 		// Save database connection
 		$this->dbc = $dbc;
 
-		// Did the user submit account details
+		// Did the user submit account details?
 		if( isset( $_POST['signupsubmit'] )) {
 			$this->processNewAccountDetails();
 		}
@@ -21,13 +21,6 @@ class SignUpController extends PageController {
 	}
 
 	public function buildHTML() {
-		// // Insantiate (create instance of) Plates library
-		// $plates = new League\Plates\Engine('app/templates');
-
-		// // Prepare a container for data
-		// $data = [];
-
-		// echo $plates->render('signup', $data);
 
 		echo $this->plates->render('signup', $this->data);
 	}
@@ -52,6 +45,8 @@ class SignUpController extends PageController {
 
 		}
 
+		// Validate email address
+
 		if( strlen($_POST['email']) > 89 ){
 
 			$totalErrors++;
@@ -66,7 +61,7 @@ class SignUpController extends PageController {
 			$this->data['emailMessage'] = 'You must include an email address';
 		}
 
-		// Make sure the E-mail is not in use
+		// Make sure the email address is not in use
 		$filteredEmail = $this->dbc->real_escape_string( $_POST['email'] );
 
 		$sql = "SELECT email
@@ -99,7 +94,7 @@ class SignUpController extends PageController {
 			$this->data['passwordMessage'] = 'Your password cannot be more than 200 characters';
 		}
 
-		// If the reentered password is not the same as the password
+		// If the reentered password is not the same as the first password entry
 		if(($_POST['password']) != ($_POST['reenterpassword'])) {
 			$totalErrors++;
 			$this->data['reenterPasswordMessage'] = 'Your reentered password must be the same as your password';
@@ -119,14 +114,14 @@ class SignUpController extends PageController {
 			$userName = $this->dbc->real_escape_string($_POST['username']);
 			$filteredEmail = $this->dbc->real_escape_string($_POST['email']);
 
-			// Prepare sql
+			// Prepare sql, insert data into user table
 			$sql = "INSERT INTO user(username, email, password)
 					VALUES('$username','$filteredEmail','$hash')";
 
 			// Run the query
 			$this->dbc->query($sql);
 
-			// Log the user in
+			// Log the user in and set their privilege to user
 			$_SESSION['id'] = $this->dbc->insert_id;
 			$_SESSION['privilege'] = 'user';
 

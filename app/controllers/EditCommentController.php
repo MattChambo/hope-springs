@@ -10,6 +10,7 @@ class EditCommentController extends PageController {
 		// Save database connection
 		$this->dbc = $dbc;
 
+		// Check to see if the user is logged in
 		$this->mustBeLoggedIn();
 
 		if( isset($_POST['editcomment']) ){
@@ -23,17 +24,6 @@ class EditCommentController extends PageController {
 	}
 
 	public function buildHTML() {
-		// // Insantiate (create instance of) Plates library
-		// $plates = new League\Plates\Engine('app/templates');
-
-		// // Prepare a container for data
-		// $data = [];
-
-		// if($this->commentMessage != '') {
-		// 	$data['commentMessage'] = $this->commentMessage;
-		// }
-
-		// echo $plates->render('editcomment', $data);
 
 		echo $this->plates->render('editcomment', $this->data);
 	}
@@ -61,24 +51,20 @@ class EditCommentController extends PageController {
 
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
-			// Send the user back to the post page
-			// They probably didn't own the post OR the post was deleted
+			// Send the user back to the home page
 			header("Location: index.php?page=home");
 		} else {
 
-			// WAIT!
-			// What if the user has submited the form?
-			// We don't want to lose their changes
+			// If the user has submitted the form we don't want to lose their changes
 			if( isset($_POST['editcomment'])) {
-				// USE THE FORM DATA!
+				// Use the form data
 				$this->data['post'] = $_POST;
 
 			} else {
-				// USE the database data
+				// Use the database data
 				$result = $result->fetch_assoc();
 
 				$this->data['post'] = $result;
-
 			}	
 		}
 	}
@@ -91,7 +77,6 @@ class EditCommentController extends PageController {
 		
 		$comment = $_POST['comment'];
 
-		// Title
 		if( strlen($comment) > 10000 ){
 			$totalErrors++;
 			$this->data['commentError'] = 'Your comment cannot be more than 10000 characters long';
@@ -105,11 +90,11 @@ class EditCommentController extends PageController {
 		// If there are no errors
 		if( $totalErrors == 0 ) {
 
+			// Filter the data
 			$postID = $this->dbc->real_escape_string($_GET['postid']);
 
 			$commentID = $this->dbc->real_escape_string($_GET['commentid']);
 
-			// Filter the data
 			$comment = $this->dbc->real_escape_string($comment);
 
 			$userId = $_SESSION['id'];
@@ -130,7 +115,7 @@ class EditCommentController extends PageController {
 				$this->data['updateMessage'] = 'Nothing changed. there must have been an error';
 			} else {
 
-				// Redirect the user to the post page
+				// Redirect the user to the view post page
 				header("Location: index.php?page=viewpost&postid= $postID");
 			}
 

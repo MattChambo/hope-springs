@@ -105,7 +105,6 @@ class EditAccountController extends PageController {
 				// Redirect the user to the post page
 				header("Location: index.php?page=home");
 			}
-
 		}
 	}
 
@@ -129,6 +128,6 @@ class EditAccountController extends PageController {
 
 				header('Location: index.php?page=home');
 				die();
-			}
 		}
+	}
 }

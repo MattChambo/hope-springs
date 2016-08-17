@@ -7,25 +7,22 @@ class HomeController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
+
 		// Save database connection
 		$this->dbc = $dbc;
 
+		// Get the nav links
+		// $test = $this->getNavLinks();
+		// var_dump($test);
+		// die();
+
+		
+		// Get the posts
 		$this->getLatestPosts();
-
-
 	}
 
 	public function buildHTML() {
-		// Insantiate (create instance of) Plates library
-		$plates = new League\Plates\Engine('app/templates');
 
-		// $allData = $this->getLatestPosts();
-
-		// $data = [];
-
-		// $data['allPosts'] = $allData;
-
-		// echo $plates->render('home', $data);
 		 echo $this->plates->render('home', $this->data);
 	}
 
@@ -33,6 +30,7 @@ class HomeController extends PageController {
 
 	private function getLatestPosts() {
 
+		// Pagination stuff
 		if( isset($_GET['pagination']) ) {
 			$paginationPage = $this->dbc->real_escape_string($_GET['pagination']);
 		} else {
@@ -42,6 +40,7 @@ class HomeController extends PageController {
 		$sql = "SELECT count(id) AS TotalPosts FROM posts";
 
 		$result = $this->dbc->query($sql);
+
     	$result = $result->fetch_assoc();
 
     	$totalPosts = $result['TotalPosts'];
@@ -54,7 +53,7 @@ class HomeController extends PageController {
 
     	$offset = $paginationPage * 10 - 10;
 
-		// Prepare some SQL
+		// Prepare some SQL, this query was really hard to write, it's probably a bit messier than it could have been but it works
 		$sql = "SELECT posts.id, posts.user_id, posts.title, posts.content, posts.updated_at, posts.created_at, user.username,
 				(SELECT COUNT(comment)
 				FROM `comments`
@@ -70,12 +69,7 @@ class HomeController extends PageController {
 
 		// Extract the results as an array
 		$allData = $result->fetch_all(MYSQLI_ASSOC);
-
-		// return $allData;
 		
-		// Return the results to the code that called this function
 		$this->data['allPosts'] = $allData;
-
-
 	}
 }

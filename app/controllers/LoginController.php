@@ -2,9 +2,6 @@
 
 class LoginController extends PageController {
 
-	 // private $userNameMessage;
-	 // private $passwordMessage;
-
 	public function __construct($dbc) {
 
 	parent::__construct();
@@ -21,19 +18,6 @@ class LoginController extends PageController {
 	}
 
 	public function buildHTML() {
-	//  // Insantiate (create instance of) Plates library
-	//  $plates = new League\Plates\Engine('app/templates');
-
-	//  // Prepare a container for data
-	//  $data = [];
-
-	//  if($this->userNameMessage != '') {
-	//  	$data['userNameMessage'] = $this->usernameMessage;
-	//  }
-
-	// if($this->passwordMessage != '') {
-	//  	$data['passwordMessage'] = $this->passwordMessage;
-	//  }
 
 	echo $this->plates->render('login', $this->data);
 

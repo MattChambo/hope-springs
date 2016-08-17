@@ -3,25 +3,13 @@
     'desc'=>'This is a post from Hope Springs a website for male survivors of physical, sexual or emotional abuse, as well as their families and friends'
   ]);  ?> 
 
-
-<style type="text/css">
-  .show{
-    display: block;
-  }
-
-</style>
   <body>
-
     <div class="container-fluid">
       <div class="row content">
-
       <?= $this->insert('nav') ?>
-
       <div class="col-sm-9">
         <div id="viewpost">
-          
           <h2><?= $this->e($post['title']) ?></h2>
-        
           <p>
             <?= $this->e($post['content']) ?>
           </p>

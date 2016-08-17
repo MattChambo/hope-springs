@@ -22,20 +22,7 @@ class MakePostController extends PageController {
 	}
 
 	public function buildHTML() {
-		// // Insantiate (create instance of) Plates library
-		// $plates = new League\Plates\Engine('app/templates');
-
-		// // Prepare a container for data
-		// $data = [];
-
-		// if($this->titleMessage != '') {
-		// 	$data['titleMessage'] = $this->titleMessage;
-		// }
-
-		// if($this->postMessage != '') {
-		// 	$data['postMessage'] = $this->postMessage;
-		// }
-
+	
 		echo $this->plates->render('makepost', $this->data);
 	}
 
@@ -43,6 +30,7 @@ class MakePostController extends PageController {
 
 		$totalErrors = 0;
 
+		// Trim the title and post so that they don't have unnecessary spaces
 		$title = trim($_POST['title']);
 		$post = trim($_POST['post']);
 
@@ -64,6 +52,7 @@ class MakePostController extends PageController {
 			$totalErrors++;
 		}
 
+		// If there are no errors
 		if($totalErrors == 0) {
 
 
@@ -74,10 +63,11 @@ class MakePostController extends PageController {
 			// Get the ID of the logged in user
 			$userID = $_SESSION['id'];
 
-			// SQL (INSERT)
+			// Insert data into posts table
 			$sql = "INSERT INTO posts (title, content, user_id) 
 					VALUES ('$title', '$post', $userID) ";
 
+			// Run the query
 			$this->dbc->query( $sql );
 
 			// Make sure it worked
@@ -87,10 +77,8 @@ class MakePostController extends PageController {
 				header('Location: index.php?page=viewpost&postid='.$postID);
 			} 
 
-
 		}
 
 	}
-
 
 }

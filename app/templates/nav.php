@@ -1,6 +1,6 @@
 
     <div class="col-sm-3 sidenav">
-     <a href="index.php?page=home"><h2 class="pagetitle">Hope Springs</h2></a>
+     <a href="index.php?page=home" class="maintitle"><h2 class="pagetitle">Hope Springs</h2></a>
        <div class="input-group">
        <form action="index.php?page=search" method="post">
         <input type="text" class="form-control" name="search" placeholder="Search Hope Springs">
@@ -25,9 +25,11 @@
       </ul>
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="index.php?page=wellcome">Wellcome to Hope Springs!</a></li>
+
         <?php foreach ($allTitles as $titles): ?>
           <li><a href="index.php?page=viewpost&postid=<?= $titles['id'] ?>"><?= htmlentities($titles['title']) ?></li>
         <?php endforeach; ?>
+        
         <li><a href="#">Post 2</a></li>
         <li><a href="#">Post 3</a></li>
         <li><a href="#">Post 4</a></li>
