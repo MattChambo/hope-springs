@@ -2,8 +2,6 @@
 
 class ViewPostController extends PageController {
 
-	private $commentMessage;
-
 	public function __construct($dbc) {
 
 		parent::__construct();
@@ -60,7 +58,7 @@ class ViewPostController extends PageController {
 		}
 
 		// Get all the comments and order them by when they were created.
-		$sql = "SELECT comments.id AS commentid, user_id, comment, username, updated_at, created_at, post_id
+		$sql = "SELECT comments.id AS commentid, comments.user_id AS comment_user_id, comment, username, updated_at, created_at, post_id
 				FROM comments
 				JOIN user
 				ON comments.user_id = user.id
@@ -168,6 +166,7 @@ class ViewPostController extends PageController {
 		$userID = $_SESSION['id'];
 		$privilege = $_SESSION['privilege'];
 		$commentID = $_GET['CommentID'];
+
 		$sql = "SELECT id, comment
 				FROM comments
 				WHERE id = $commentID";

@@ -54,7 +54,9 @@ class EditPostController extends PageController {
 		} else {
 
 			// If the user has submited the form we don't want to lose their changes
+
 			if( isset($_POST['editpost'])) {
+
 				// Use the form data
 				$this->data['post'] = $_POST;
 
@@ -62,7 +64,7 @@ class EditPostController extends PageController {
 				$this->data['originalTitle'] = $result['title'];
 
 			} else {
-				// USE the database data
+				// Use the database data
 				$result = $result->fetch_assoc();
 
 				$this->data['post'] = $result;

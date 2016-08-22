@@ -49,24 +49,4 @@ class SearchController extends PageController {
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -23,7 +23,7 @@
         <br>
         <textarea name="post" id="post" cols="70" rows="20" class="inputField" placeholder="Write your post here"></textarea>
         <br>
-        <span id="postMessage"></span>
+        <span id="postMessage"><?= isset($postMessage) ? $postMessage : '' ?></span>
         <br>
         <input type="submit" name="postsubmit" value="Submit your post" id="postsubmit" class="btn btn-success">
         </form>

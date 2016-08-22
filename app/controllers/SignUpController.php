@@ -81,14 +81,15 @@ class SignUpController extends PageController {
 
 		// If the password is less than 8 characters long
 		if( strlen($_POST['password']) < 8 ) {
+
 			// Password is too short
 			$totalErrors++;
 			$this->data['passwordMessage'] = 'Password must be at least 8 characters';
 			
-
 		}
 
 		if( strlen($_POST['password']) > 200 ) {
+
 			// The password is too long
 			$totalErrors++;
 			$this->data['passwordMessage'] = 'Your password cannot be more than 200 characters';
@@ -96,6 +97,7 @@ class SignUpController extends PageController {
 
 		// If the reentered password is not the same as the first password entry
 		if(($_POST['password']) != ($_POST['reenterpassword'])) {
+			
 			$totalErrors++;
 			$this->data['reenterPasswordMessage'] = 'Your reentered password must be the same as your password';
 		}

@@ -27,7 +27,7 @@ class LoginController extends PageController {
 		$totalErrors = 0;
 
 		if(strlen($_POST['username']) < 3) {
-			$this->data['userNameMessage'] = 'Your user name must be more than three charcters';
+			$this->data['userNameMessage'] = 'You must enter your full user name';
 			$totalErrors++;
 		}
 
@@ -39,14 +39,14 @@ class LoginController extends PageController {
 		// Make sure password is at least 8 characters
 		if( strlen($_POST['password']) < 8 ) {
 
-			$this->data['passwordMessage'] = 'Your password must be more than eight characters';
+			$this->data['passwordMessage'] = 'Your must enter your full password';
 			$totalErrors++;
 
 		}
 
 		if( strlen($_POST['password']) > 100 ) {
 
-			$this->data['passwordMessage'] = 'Your password must be less than 100 characters';
+			$this->data['passwordMessage'] = 'Your password cannot be more than 100 characters please enter your password correctly';
 			$totalErrors++;
 
 		}
@@ -64,7 +64,6 @@ class LoginController extends PageController {
 			// Is there a result?
 			if( $result->num_rows == 1 ) {
 
-				// Check the password
 				$userData = $result->fetch_assoc();
 
 				// Check the password
@@ -72,6 +71,7 @@ class LoginController extends PageController {
 
 				// If the result was good
 				if( $passwordResult == true ) {
+
 					// Log the user in
 					$_SESSION['id'] = $userData['id'];
 					$_SESSION['privilege'] = $userData['privilege'];
@@ -79,6 +79,7 @@ class LoginController extends PageController {
 					header('Location: index.php?page=home');
 
 				} else {
+					
 					// Prepare error message
 					$this->data['loginMessage'] = 'User name or password incorrect';
 				}

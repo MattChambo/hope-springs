@@ -8,7 +8,7 @@
 <body id="signupbackground">
 		<div id="signup">
 			<h1>Edit your account details</h1>
-			<form action="index.php?page=editaccount" method="post" id="editAccountForm">
+			<form action="index.php?page=editaccount&accountid=<?= $_GET['accountid'] ?>" method="post" id="editAccountForm">
 				<label for="username">User name:</label>
 				<input type="text" name="username" value="<?= $accountInfo['username'] ?>" id="username">
 				<br>
@@ -33,6 +33,7 @@
 			</form>
 				<button id="deleteAccount">Delete your account</button>
 				<div id="deleteAccountOptions">
+					<p>Are you sure you want to delete your account?</p>
 					<a href="<?= $_SERVER['REQUEST_URI'] ?>&deleteaccount&userid=<?= $_GET['accountid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
 				</div>
 				<br>
@@ -45,7 +46,7 @@
 	$(document).ready(function() {
 
 		// When the user clicks on the delete button
-		$('#deleteAccount').click(function(){
+		$('#deleteAccount, #deleteAccountOptions').click(function(){
 			// Toggle the visibilty of the controls
 			$('#deleteAccountOptions').toggle();
 

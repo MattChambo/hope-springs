@@ -2,9 +2,6 @@
 
 class MakePostController extends PageController {
 
-	private $titleMessage;
-	private $postMessage;
-
 	public function __construct($dbc) {
 
 		parent::__construct();
@@ -12,6 +9,7 @@ class MakePostController extends PageController {
 		// Save database connection
 		$this->dbc = $dbc;
 
+		// Check to see if the user is logged in
 		$this->mustBeLoggedIn();
 
 		// Did the user submit the new post form?
