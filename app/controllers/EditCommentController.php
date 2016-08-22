@@ -7,12 +7,14 @@ class EditCommentController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
+
 		// Save database connection
 		$this->dbc = $dbc;
 
 		// Check to see if the user is logged in
 		$this->mustBeLoggedIn();
 
+		// If the user has submited the form process the edit
 		if( isset($_POST['editcomment']) ){
 		$this->processCommentEdit();
 		}
@@ -25,6 +27,7 @@ class EditCommentController extends PageController {
 
 	public function buildHTML() {
 
+		// Render the page
 		echo $this->plates->render('editcomment', $this->data);
 	}
 
@@ -51,16 +54,19 @@ class EditCommentController extends PageController {
 
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
+
 			// Send the user back to the home page
 			header("Location: index.php?page=home");
 		} else {
 
 			// If the user has submitted the form we don't want to lose their changes
 			if( isset($_POST['editcomment'])) {
+
 				// Use the form data
 				$this->data['post'] = $_POST;
 
 			} else {
+
 				// Use the database data
 				$result = $result->fetch_assoc();
 
@@ -108,6 +114,7 @@ class EditCommentController extends PageController {
 					$sql .= " AND user_id = $userId";
 				}
 
+			// Run the query
 			$this->dbc->query($sql);
 
 			// Validation

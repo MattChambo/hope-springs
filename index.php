@@ -4,9 +4,10 @@
 
 	require 'vendor/autoload.php';
 	require 'app/controllers/PageController.php';
-	require 'app/controllers/NavController.php';
 
 	$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+
+	// Create database connection
 
 	$dbc = new mysqli('localhost', 'root', '', 'hope_springs');
 
@@ -68,7 +69,7 @@
 			$controller = new EditAccountController($dbc);
 		break;
 
-		//Wellcome page
+		// Wellcome page
 
 		case 'wellcome':
 			require 'app/controllers/WellcomeController.php';
@@ -82,11 +83,15 @@
 			$controller = new SearchController($dbc);
 		break;
 
+		// Remove session id and privilege
+
 		case 'logout':
 			unset($_SESSION['id']);
 			unset($_SESSION['privilege']);
 			header('Location: index.php');
 		break;
+
+		// Go to 404 page
 
 		default:
 			require 'app/controllers/NotFoundController.php';
@@ -94,5 +99,7 @@
 		break;
 
 	}
+
+// Build the page
 
 $controller->buildHTML();

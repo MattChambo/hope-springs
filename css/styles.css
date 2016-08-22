@@ -4,6 +4,35 @@
 	padding: 10px;
 }
 
+#homeheading {
+	color: black;
+}
+
+#homeheading {
+	text-decoration: none;
+}
+
+#subheading {
+	font-size: 16px;
+}
+
+#wellcomemessage {
+	padding: 30px;
+	padding-right: 500px; 
+}
+
+#resources {
+	color: #006bb3;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-bottom: 5px;
+	font-size: 15px; 
+}
+
+#links {
+	margin-bottom: 95px;
+}
+
 .prevnext {
 	margin: 5px;
 	background-color: #b3e7ff;

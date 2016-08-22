@@ -2,9 +2,6 @@
 
 class EditPostController extends PageController {
 
-	private $titleMessage;
-	private $postMessage;
-
 	public function __construct($dbc) {
 
 		parent::__construct();
@@ -124,6 +121,7 @@ class EditPostController extends PageController {
 					$sql .= " AND user_id = $userId";
 				}
 
+			// Run the query
 			$this->dbc->query($sql);
 
 			// Validation
