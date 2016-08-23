@@ -5,23 +5,29 @@ class ViewPostController extends PageController {
 	public function __construct($dbc) {
 
 		parent::__construct();
+
 		// Save database connection
 		$this->dbc = $dbc;
 
 		// Does the user want to delete the post?
 		if( isset($_GET['deletepost']) ){
+
 			$this->deletePost();
 		}
 
 		// Does the user want to delete a comment?
 		if( isset($_GET['deletecomment']) ){
+
+			// Run the delete comment function
 			$this->deleteComment();
 		}
 
-
 		// Did the user add a comment?
 		if( isset($_POST['new-comment']) ) {
+
+			// Run the process comment function
 			$this->processNewComment();
+
 		}
 
 	}
@@ -44,15 +50,18 @@ class ViewPostController extends PageController {
 				FROM posts 
 				WHERE id = $postID";
 
-		// Run the SQL
+		// Run the SQL and save in $result
 		$result = $this->dbc->query($sql);
 
 		// If the query failed
 		if( !$result || $result->num_rows == 0 ) {
+
 		// Redirect user to not found page
 		header('Location: index.php?page=notfound');
+
 		} else {
-		// it worked!
+
+			// it worked!
 			$this->data['post'] = $result->fetch_assoc();
 
 		}
@@ -71,8 +80,10 @@ class ViewPostController extends PageController {
 
 		// Extract the data as an associative array
 		if( $result || $result->num_rows > 0 ){
+
 			$this->data['allComments'] = $result->fetch_all(MYSQLI_ASSOC);		
 		} 
+
 	}
 
 	private function processNewComment() {
@@ -81,13 +92,17 @@ class ViewPostController extends PageController {
 		$totalErrors = 0;
 		// Minimum length is 3
 		if(strlen($_POST['comment']) < 3) {
+
 			$this->data['commentMessage'] = 'Your comment must be at least three charcters';
 			$totalErrors++;
+
 		}
 		// Maximum length is 10000
 		if(strlen($_POST['comment']) > 10000) {
+
 			$this->data['commentMessage'] = 'Your comment can not be more than 10,000 characters long';
 			$totalErrors++;
+
 		}
 		// If validation passed, add to database
 		if( $totalErrors == 0 ) {
@@ -145,7 +160,9 @@ class ViewPostController extends PageController {
 
 		// If the user is not an admin
 		if( $privilege != 'admin' ) {
+
 			$sql .= " AND user_id = $userID";
+
 		}
 
 		// Run this query
@@ -160,7 +177,9 @@ class ViewPostController extends PageController {
 	private function deleteComment() {
 
 		if( !isset($_SESSION['id']) ) {
+
 			return;
+
 		}
 
 		$userID = $_SESSION['id'];

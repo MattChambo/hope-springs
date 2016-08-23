@@ -4,27 +4,26 @@ class EditAccountController extends PageController {
 
 	public function __construct($dbc) {
 
-	parent::__construct();
+		parent::__construct();
 
-	// Save database connection
-	$this->dbc = $dbc;
+		// Save database connection
+		$this->dbc = $dbc;
 
-	// Check to see if the user is logged in
-	$this->mustBeLoggedIn();
+		// Check to see if the user is logged in
+		$this->mustBeLoggedIn();
 
-	// Get information about the post
-	 $this->getAccountInfo();
+		// Get information about the post
+		$this->getAccountInfo();
 
-	// If the user has submited the form process the edit
-	if( isset($_POST['editaccount']) ){
-		$this->processAccountEdit();
-	}
+		// If the user has submited the form process the edit details
+		if( isset($_POST['editaccount']) ){
+			$this->processAccountEdit();
+		}
 
-	// If the user has chosen to delete their account delete the account
-	if( isset($_GET['deleteaccount']) ){
-		$this->deleteAccount();
-	}
-
+		// If the user has chosen to delete their account delete the account
+		if( isset($_GET['deleteaccount']) ){
+			$this->deleteAccount();
+		}
 
 	}
 
@@ -75,13 +74,17 @@ class EditAccountController extends PageController {
 			$totalErrors++;
 		}
 
-		if( strlen( $email ) == 0 ) {
+		// Check that the email address exists and is not too long display error if it is too long or not there
+
+		if( strlen( $email ) === 0 ) {
 			$this->data['emailMessage'] = 'You must include an email address';
 			$totalErrors++;
 		} elseif( strlen( $email ) > 100 ) {
 			$this->data['emailMessage'] = 'Your user name cannot be more than thirty characters';
 			$totalErrors++;
-		}
+		} 
+
+		// Make sure the password is long enough but not too long and display error if it is too long or too short
 
 		if( strlen( $password ) < 8 ) {
 			$this->data['passwordMessage'] = 'Your password must be at least eight characters';
@@ -104,7 +107,7 @@ class EditAccountController extends PageController {
 			$username = $this->dbc->real_escape_string($username);
 			$email = $this->dbc->real_escape_string($email);
 
-			// Encript the password
+			// Hash the password
 			$password = password_hash( $_POST['password'], PASSWORD_BCRYPT );
 
 			// Save user id as a variable
@@ -133,6 +136,8 @@ class EditAccountController extends PageController {
 
 		// The function for deleting your account
 		private function deleteAccount() {
+
+			// If you are not logged in don't delete the account
 			if( !isset($_SESSION['id']) ) {
 				return;
 			}

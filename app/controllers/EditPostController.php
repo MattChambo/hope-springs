@@ -25,7 +25,7 @@ class EditPostController extends PageController {
 
 	}
 
-		private function getPostInfo() {
+	private function getPostInfo() {
 
 		// Get the POST ID from the GET array
 		$postID = $this->dbc->real_escape_string($_GET['postid']);
@@ -71,8 +71,10 @@ class EditPostController extends PageController {
 				
 				$this->data['originalTitle'] = $result['title'];
 
-			}	
+			}
+
 		}
+
 	}
 
 		private function processPostEdit() {
@@ -119,6 +121,7 @@ class EditPostController extends PageController {
 					content = '$post'
 					WHERE id = $postID ";
 
+				// If you are not an admin you must own the post
 				if($_SESSION['privilege'] != 'admin') {
 					$sql .= " AND user_id = $userId";
 				}
@@ -126,7 +129,7 @@ class EditPostController extends PageController {
 			// Run the query
 			$this->dbc->query($sql);
 
-			// Validation
+			// If nothing changed display error
 			if( $this->dbc->affected_rows == 0) {
 				$this->data['updateMessage'] = 'Nothing changed. there must have been an error';
 			} else {
@@ -138,4 +141,5 @@ class EditPostController extends PageController {
 		}
 
 	}
+
 }

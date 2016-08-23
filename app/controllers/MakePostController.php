@@ -21,6 +21,7 @@ class MakePostController extends PageController {
 
 	public function buildHTML() {
 	
+		// Render the page
 		echo $this->plates->render('makepost', $this->data);
 	}
 
@@ -32,7 +33,7 @@ class MakePostController extends PageController {
 		$title = trim($_POST['title']);
 		$post = trim($_POST['post']);
 
-		// Title
+		// Title validation
 		if( strlen( $title ) == 0 ) {
 			$this->data['titleMessage'] = 'A post title is required';
 			$totalErrors++;
@@ -41,7 +42,7 @@ class MakePostController extends PageController {
 			$totalErrors++;
 		}
 
-		// Post
+		// Post validation
 		if( strlen( $post ) == 0 ) {
 			$this->data['postMessage'] = 'You must write something!';
 			$totalErrors++;
@@ -52,7 +53,6 @@ class MakePostController extends PageController {
 
 		// If there are no errors
 		if($totalErrors == 0) {
-
 
 			// Filter the data
 			$title = $this->dbc->real_escape_string($title);
@@ -70,7 +70,7 @@ class MakePostController extends PageController {
 
 			// Make sure it worked
 			if ( $this->dbc->affected_rows ) {
-				// echo 'The ID is: '.$this->insert_id;
+				
 				$postID = $this->dbc->insert_id;
 				header('Location: index.php?page=viewpost&postid='.$postID);
 			} 

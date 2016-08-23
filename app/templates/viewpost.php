@@ -1,32 +1,36 @@
 <?php $this->layout('master', [
     'title'=>'View a post on the Hope Springs forum',
     'desc'=>'This is a post from Hope Springs a website for male survivors of physical, sexual or emotional abuse, as well as their families and friends'
-  ]);  ?> 
+  ]);
 
-  <body>
-    <div class="container-fluid">
-      <div class="row content">
+?> 
+
+<body>
+  <div class="container-fluid">
+    <div class="row content">
+      
       <?= $this->insert('nav') ?>
+      
       <div class="col-sm-9">
         <div id="viewpost">
           <h2><?= $this->e($post['title']) ?></h2>
           <p>
             <?= $this->e($post['content']) ?>
           </p>
-        <div>
-          <?php
+            <div>
+              <?php
 
-            if( isset($_SESSION['id']) ) {
+                if( isset($_SESSION['id']) ) {
 
-              if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
-              // You own post!
-          ?>
+                if( $_SESSION['id'] == $post['user_id'] || $_SESSION['privilege'] == 'admin' ) {
+                // You own post!
+              ?>
               <a href="index.php?page=editpost&postid=<?= $this->e($post['id']) ?>" class="editdelete">Edit</a>
               <button id="deletePost" class="editdelete">Delete</button>
-              <div id="deletePostOptions">
-                <span>Are you sure you want to delete the post?</span>
-                <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletepost" class="editdelete">Yes</a> / <button class="editdelete">No</button>
-              </div>
+                <div id="deletePostOptions">
+                  <span>Are you sure you want to delete the post?</span>
+                  <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletepost" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+                </div>
 
         <?php
       }
@@ -55,34 +59,30 @@
           <div class="col-sm-10">
            <h4><?= htmlentities($comment['username']) ?><small> Comment was last edited on <?= htmlentities($comment['updated_at']) ?></small></h4>
             <p><?= htmlentities($comment['comment']) ?></p>
-            <?php if(isset($_SESSION['id'])):?>
-              <?php if( $_SESSION['id'] === $comment['comment_user_id'] || $_SESSION['privilege'] == 'admin' ):?>
-              <a href="index.php?page=editcomment&postid=<?= $comment['post_id'] ?>&commentid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
-              <button class="editdelete deleteComment">Delete</button>
-              <div class="deleteCommentOptions">
-                <span>Are you sure you want to delete the comment?</span>
-                <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletecomment&CommentID=<?= $comment['commentid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
-              </div>
-             <?php endif; ?>
-            <?php endif; ?>
-
-
-
-          <hr>
-          <br>
-        </div>
-      </div>
-      <?php endforeach ?>
+              <?php if(isset($_SESSION['id'])):?>
+                <?php if( $_SESSION['id'] === $comment['comment_user_id'] || $_SESSION['privilege'] == 'admin' ):?>
+                  <a href="index.php?page=editcomment&postid=<?= $comment['post_id'] ?>&commentid=<?= $comment['commentid'] ?>" class="editdelete">Edit</a>
+                  <button class="editdelete deleteComment">Delete</button>
+                    <div class="deleteCommentOptions">
+                      <span>Are you sure you want to delete the comment?</span>
+                      <a href="<?= $_SERVER['REQUEST_URI'] ?>&deletecomment&CommentID=<?= $comment['commentid'] ?>" class="editdelete">Yes</a> / <button class="editdelete">No</button>
+                    </div>
+                  <?php endif; ?>
+                <?php endif; ?>
+              <hr>
+              <br>
+            </div>
+          </div>
+        <?php endforeach ?>
         <?php else: ?>
         <p><span class="badge">0</span> Comments:</p><br>
-        <?php endif; ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>
 
 <footer class="container-fluid">
   <p>&copy; Matthew William Chamberlain <a href="http://mattchambo.github.io/oh-green-september/" class="footerlink">Visit Matts poetry and music website!</a></p>
-
 </footer>
 
 <script>

@@ -10,12 +10,6 @@ class HomeController extends PageController {
 
 		// Save database connection
 		$this->dbc = $dbc;
-
-		// Get the nav links
-		// $test = $this->getNavLinks();
-		// var_dump($test);
-		// die();
-
 		
 		// Get the posts
 		$this->getLatestPosts();
@@ -53,7 +47,7 @@ class HomeController extends PageController {
 
     	$offset = $paginationPage * 10 - 10;
 
-		// Prepare some SQL, this query was really hard to write, it's probably a bit messier than it could have been but it works
+		// Prepare some SQL. This query was really hard to write, it's probably a bit messier than it could have been but it works.
 		$sql = "SELECT posts.id, posts.user_id, posts.title, posts.content, posts.updated_at, posts.created_at, user.username,
 				(SELECT COUNT(comment)
 				FROM `comments`
@@ -63,7 +57,6 @@ class HomeController extends PageController {
 				LIMIT 10 OFFSET $offset
 				";
 
-
 		// Run the SQL and capture the result
 		$result = $this->dbc->query($sql);
 
@@ -72,4 +65,5 @@ class HomeController extends PageController {
 		
 		$this->data['allPosts'] = $allData;
 	}
+	
 }

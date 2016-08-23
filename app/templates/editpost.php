@@ -1,15 +1,15 @@
 <?php $this->layout('master', [
     'title'=>'Edit your post on the Hope Springs forum',
     'desc'=>'Edit your post on this page'
-  ]); ?>
+  ]); 
+
+?>
 
 <body>
 
   <div class="container-fluid">
     <div class="row content">
     <?= $this->insert('nav') ?>
-
-
       <div class="col-sm-9">
         <h2>Edit your post</h2>
         <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" enctype="multipart/form-data" id="postform">

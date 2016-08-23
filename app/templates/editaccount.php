@@ -3,7 +3,7 @@
     'desc'=>'Account creation page for Hope Springs forum'
   ]); 
 
-  ?> 
+?> 
 
 <body id="signupbackground">
 		<div id="signup">

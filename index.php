@@ -83,7 +83,7 @@
 			$controller = new SearchController($dbc);
 		break;
 
-		// Remove session id and privilege
+		// Remove session id and privilege and return to the home page
 
 		case 'logout':
 			unset($_SESSION['id']);

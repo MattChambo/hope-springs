@@ -20,7 +20,7 @@ abstract class PageController {
 
 	public function mustBeLoggedIn() {
 
-			// If you are not logged in
+		// If you are not logged in
 		if( !isset($_SESSION['id']) ) {
 
 			// Redirect the user to the login page
@@ -31,12 +31,14 @@ abstract class PageController {
 
 	public function mustBeLoggedOut() {
 
-			// If you are logged in
+		// If you are logged in
 		if( isset($_SESSION['id']) ) {
 
 			// Redirect the user to the home page
 			header('Location: index.php?page=home');
 			die();
 		}
+
 	}
+	
 }

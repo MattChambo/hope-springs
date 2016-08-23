@@ -117,7 +117,7 @@ class EditCommentController extends PageController {
 			// Run the query
 			$this->dbc->query($sql);
 
-			// Validation
+			// If nothing changed display error
 			if( $this->dbc->affected_rows == 0) {
 				$this->data['updateMessage'] = 'Nothing changed. there must have been an error';
 			} else {

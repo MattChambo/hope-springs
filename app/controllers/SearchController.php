@@ -3,6 +3,7 @@
 class SearchController extends PageController {
 
 	public function __construct($dbc) {
+
 		parent::__construct();
 
 		// Save the database conection
@@ -17,13 +18,18 @@ class SearchController extends PageController {
 
 	public function buildHTML() {
 
+		// Render the page
 		echo $this->plates->render('search', $this->data);
 	}
 
 	public function getSearch() {
+
 		if(strlen($_POST['search']) === 0){
+
 			$searchTerm = "";
+
 		} else {
+
 			$result = $_POST['search'];
 			$searchTerm = strtolower($result);
 		}
@@ -42,9 +48,14 @@ class SearchController extends PageController {
 
 		// Check to see if there are any results, get results if there are, display message if there aren't
 		if( !$result || $result->num_rows == 0){
+
 			$this->data['searchResults'] = "No Results";
+
 		} else {
+
+			// Get all the serch results as an associative array
 			$this->data['searchResults'] = $result->fetch_all(MYSQLI_ASSOC);
+
 		}
 
 	}

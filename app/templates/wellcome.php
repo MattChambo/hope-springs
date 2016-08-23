@@ -2,9 +2,10 @@
     'title'=>'Hope Springs forum',
     'desc'=>'Hope Springs is a forum for male survivors of physical, sexual and emotional abuse, as well as their families and friends'
   ]); 
-  ?> 
 
-  <body>
+?> 
+
+<body>
 
   <div class="container-fluid">
     <div class="row content">

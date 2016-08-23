@@ -1,7 +1,9 @@
 <?php $this->layout('master', [
     'title'=>'Create an account for the Hope Springs forum!',
     'desc'=>'Account creation page for Hope Springs forum'
-  ]); ?> 
+  ]); 
+
+?> 
 
 <body id="signupbackground">
 		<div id="signup">

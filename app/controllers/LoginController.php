@@ -4,14 +4,13 @@ class LoginController extends PageController {
 
 	public function __construct($dbc) {
 
-	parent::__construct();
+		parent::__construct();
 
-	$this->mustBeLoggedOut();
+		$this->mustBeLoggedOut();
 
-	// Save database connection
-	$this->dbc = $dbc;
+		$this->dbc = $dbc;
 
-	if( isset( $_POST['login'] ) ) {
+		if( isset( $_POST['login'] ) ) {
 			$this->processLoginForm();
 		}
 
@@ -26,6 +25,7 @@ class LoginController extends PageController {
 	private function processLoginForm() {
 		$totalErrors = 0;
 
+		// Validation
 		if(strlen($_POST['username']) < 3) {
 			$this->data['userNameMessage'] = 'You must enter your full user name';
 			$totalErrors++;
@@ -36,7 +36,6 @@ class LoginController extends PageController {
 			$totalErrors++;
 		}
 
-		// Make sure password is at least 8 characters
 		if( strlen($_POST['password']) < 8 ) {
 
 			$this->data['passwordMessage'] = 'Your must enter your full password';
@@ -51,6 +50,7 @@ class LoginController extends PageController {
 
 		}
 
+		// If there are no errors log the user in
 		if($totalErrors == 0) {
 			$filteredUsername = $this->dbc->real_escape_string( $_POST['username'] );
 
